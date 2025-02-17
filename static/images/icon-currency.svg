@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="230" height="129" viewBox="0 0 230 129">
+  <g id="Group_3711" data-name="Group 3711" transform="translate(-73 -342)">
+    <g id="Rectangle_334" data-name="Rectangle 334" transform="translate(73 371)" fill="#fff" stroke="#c7ced8" stroke-width="6">
+      <rect width="200" height="100" stroke="none"/>
+      <rect x="3" y="3" width="194" height="94" fill="none"/>
+    </g>
+    <g id="Group_3709" data-name="Group 3709" transform="translate(88.069 356.728)">
+      <g id="Rectangle_333" data-name="Rectangle 333" transform="translate(-0.069 0.272)" fill="#fff" stroke="#c7ced8" stroke-width="6">
+        <rect width="200" height="100" stroke="none"/>
+        <rect x="3" y="3" width="194" height="94" fill="none"/>
+      </g>
+      <text id="_" data-name="£" transform="translate(78.931 73.273)" fill="#c7ced8" font-size="64" font-family="Montserrat-SemiBold, Montserrat" font-weight="600" letter-spacing="0.05em"><tspan x="0" y="0">£</tspan></text>
+    </g>
+    <g id="Group_3710" data-name="Group 3710" transform="translate(103.138 341.659)">
+      <g id="Rectangle_333-2" data-name="Rectangle 333" transform="translate(-0.138 0.342)" fill="#fff" stroke="#189add" stroke-width="6">
+        <rect width="200" height="100" stroke="none"/>
+        <rect x="3" y="3" width="194" height="94" fill="none"/>
+      </g>
+      <text id="_2" data-name="£" transform="translate(78.862 73.341)" fill="#189add" font-size="64" font-family="Montserrat-SemiBold, Montserrat" font-weight="600" letter-spacing="0.05em"><tspan x="0" y="0">£</tspan></text>
+    </g>
+  </g>
+</svg>

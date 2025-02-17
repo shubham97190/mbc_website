@@ -1,0 +1,41 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.page_banner %}
+        <img src="{{ page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="enterprise-content blog-content">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-sm-12">
+
+                    <div class="blog-detail-outer">
+                        <div class="blog-back float-right">
+                            <a href="{% url 'blog' %}">Back</a>
+                        </div>
+                        <div class="blog-detail">
+                            {% if blog_post.image %}
+                                <img src="{{ blog_post.image.url }}" alt="" />
+                            {% endif %}
+                            <div class="blog-date">
+                                {{ blog_post.date|date:"d M Y H:i" }}
+                            </div>
+                            <hr />
+                            <small>{{blog_post.lead}}</small>
+                        </div>
+                        <h2>{{ blog_post.title }}</h2>
+                        {{ blog_post.content|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "admin/file_manager/file-manager-base.html" %}
+
+
+
+
+
+{% block breadcrumbs %}
+    {% if input_name %}
+        <li><a href="{% url 'admin_file_uploader' input_name %}?{{ request.META.QUERY_STRING }}">Images</a></li>
+        {% for breadcrumb in folder.get_breadcrumbs %}
+            <li><a href="{% url 'admin_file_folder' input_name breadcrumb.id %}?{{ request.META.QUERY_STRING }}">{{ breadcrumb }}</a></li>
+        {% endfor %}
+        <li class="active">New Folder</li>
+    {% else %}
+        <li><a href="{% url 'admin_cke_file_uploader' %}?{{ request.META.QUERY_STRING }}">Images</a></li>
+        {% for breadcrumb in folder.get_breadcrumbs %}
+            <li><a href="{% url 'admin_cke_file_folder' breadcrumb.id %}?{{ request.META.QUERY_STRING }}">{{ breadcrumb }}</a></li>
+        {% endfor %}
+        <li class="active">New Folder</li>
+    {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if input_name %}
+        <a href="{% url 'admin_file_folder' input_name folder.id %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Upload Image</a>
+    {% else %}
+        <a href="{% url 'admin_cke_file_folder' folder.id %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Upload Image</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h3>Upload File to <small>{{ folder }}</small></h3>
+    <form action="" method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include "admin/file_manager/partials/form.html" with form=form %}
+		<div class="form-group form-actions">
+			<input type="submit" class="btn btn-primary" value="Save" />
+		</div>
+    </form>
+{% endblock %}

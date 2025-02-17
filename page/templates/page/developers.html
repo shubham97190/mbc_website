@@ -1,0 +1,112 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.page_banner %}
+        <img src="{{ page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="developers-text">
+                        <h2>{{ page.title }}</h2>
+                        {{ page.content|safe }}
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-sm-6">
+                    <div class="enterprise-text">
+                        <h2>Get in touch</h2>
+                        <form id="enquiry-form" method="POST" action="">
+                            {% if form.errors %}
+                                <div class="alert alert-danger alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ form.errors }}
+                                </div>
+                            {% endif %}
+                            {% if messages %}
+                                <div class="alert alert-success alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {% for message in messages %}
+                                        <h2>{{message}}</h2>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+    
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.first_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.surname }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.company }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.position }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.telephone }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">                        
+                                {{ form.enquirer_type }} 
+                            </div>
+                            <div class="form-group">                        
+                                {{ form.referrer }} 
+                            </div>
+                            <div class="form-group">
+                                {{ form.sector }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.message }}
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        
+                                        {{form.captcha}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

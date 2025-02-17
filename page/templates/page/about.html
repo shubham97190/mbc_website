@@ -1,0 +1,87 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.page_banner %}
+        <img src="{{ page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="enterprise-content abstract-bg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-sm-6">
+                    <div class="enterprise-text">
+                        <h2>{{ page.section_1_title }}</h2>
+                        {{ page.section_1_description |safe }}
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-6 abstract-mob-bg">
+                    <div class="location-marker">
+                        <img src="{% if page.section_1_image %} {{ page.section_1_image.url }} {% endif %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="smart-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="video-inner">
+                    <img src="{% if page.section_2_image %} {{ page.section_2_image.url }} {% endif %}" alt="">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    {{ page.section_2_content_1 |safe }}
+                </div>
+                <div class="col-md-4">
+                    {{ page.section_2_content_2 |safe }}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="award-section">
+        <div class="container">
+            <h2>AWARD WINNING Technology</h2>
+            <div class="row d-flex align-items-center">
+                {% for awd_logo in awards%}
+                    <div class="col-2">
+                        <img src="{% if awd_logo.logo %} {{ awd_logo.logo.url }} {% endif %}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+     <div class="location-tagline">
+        <div class="container">
+            <h2>“Where PRECISE LOCATION Meets AR…”</h2>
+        </div>
+    </div>
+    <div class="enterprise-logos about-enterprise">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+            {% for asseen_logo in as_seen_in%}
+                <div class="col-2">
+                    <img src="{% if asseen_logo.logo %} {{ asseen_logo.logo.url }} {% endif %}" alt="">
+                </div>
+            {% endfor %}
+            </div>
+            <h3>AS SEEN IN</h3>
+        </div>
+    </div>
+    <div class="getinvolved-section about-involved">
+        <div class="contact-thumb">
+            <img src="{% static 'images/iphone-placeholder01.svg' %}" alt="">
+            <div class="involved-link">
+                <label for="">Are you a developer?</label>
+                <a href="{% url 'developers' %}">GET INVOLVED!</a>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

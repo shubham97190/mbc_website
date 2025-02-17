@@ -1,0 +1,90 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+{% if enterprise_sub_page.page_banner %}
+<img src="{{ enterprise_sub_page.page_banner.url }}" alt="">
+{% else %}
+<img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="enterprise-content blog-content">
+    <div class="container">
+        <div class="d-flex justify-content-start">
+            <div class="col-lg-8 col-sm-6">
+                <div class="blog-title-text">
+                    <h3>{{ page.title }}</h3>
+                    {{ page.description|safe }}
+                </div>
+            </div>
+            {% comment %}
+            <div class="col-lg-8 col-sm-6">
+                <div class="blog-filter">
+                    Filter posts by:
+                    <select name="" id="">
+                        <option value="" selected>Select</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>
+                </div>
+            </div>
+            {% endcomment %}
+        </div>
+    </div>
+
+    <div class="blog-listing">
+        <div class="container">
+            <div class="clearfix">
+                <div class="float-left>">
+                    {% for blog in blogs%}
+                    <div class="d-flex justify-content-start blog-box">
+                        <div class="col-lg-8 col-sm-5">
+                            <div class="card" style="height: 14rem">
+                                <div class="card-body">
+                                    <h5>{{forloop.counter}}) {{ blog.title }}</h5>
+                                    <p >{{ blog.content | safe | truncatewords:"50" }}
+                                        <a href="{% url 'blog-detail' blog.slug %}">Read more</a></p>
+                                    <a href="#" class="card-link bottom-right">{{ blog.date|date:"d M Y H:i" }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+<!--                <div class="float-right">-->
+<!--                    <div class="col-lg-3 col-sm-2">-->
+<!--                        <div class="membership-image" style="height: 40rem">-->
+<!--                            <img src="{% static 'images/information.png' %}" alt="" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="blog-pagination">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            <li>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

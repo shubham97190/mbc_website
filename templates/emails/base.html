@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+    <head>
+        <title>mbc_website.com</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+        <style type="text/css">
+            body, div.outer{
+                margin: 0;
+                padding: 0;
+                font-family: 'Open Sans', sans-serif;
+                background-color: #f5f5f5;
+                font-size: 14px;
+            }
+            div, span, p {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 14px;
+            }
+            img {
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+            a {
+                color: #516A86;
+            }
+            .social img {
+                display: inline;
+            }
+        </style>
+    </head>
+    <body>
+        <table border="0" cellpadding="0" cellspacing="0" bgcolor="#f5f5f5" width="100%">
+            <tr>
+                <td colspan="3" height="30px"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top" align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" align="center" width="600">
+                    <table style="width: 600px; text-align: center;" cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td style="background: #516A86; /*border-bottom: 1px solid #e1e1e1;*/ padding: 20px; text-align:center;">
+                                <img src="{% static 'images/logo-skignz.png' %}?v=5" width="440" style="display:inline;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background: #fff; {% if not no_padding %}padding: 40px 50px;{% endif %} color: #636363; text-align: left; font-size: 14px;">
+                                {% block content %}{% endblock %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background: #F8F9FA; padding: 30px 50px 30px 50px; color: #636363;">
+                                <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">&copy; {% now "Y" %} <a href="{% url 'home' %}" style="color: #516A86;">mbc_website.com</a> All Rights Reserved</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" height="100px"></td>
+            </tr>
+        </table>
+    </body>
+</html>

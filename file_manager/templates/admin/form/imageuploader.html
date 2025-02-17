@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    
+    if (typeof django == 'undefined'){
+        var j = jQuery.noConflict();
+    } else {
+        var j = django.jQuery.noConflict();
+    }
+
+	function ajax_set_image() {
+		filewin = window.open("{% url 'admin_image_uploader' name %}","FileSelect", "width=450, height=500,scrollbars=yes");
+	}
+
+	function ajax_select_image(f_input, f_value,f_name) {
+		j("#image_input_"+f_input).val(f_value);
+		j("#image_display_"+f_input).html(f_name);
+	}
+</script>
+<style type="text/css">
+    .field-{{ name }} .add-another {
+        display:none;
+    }
+</style>
+<div class="fileinput_wrap">
+	<input name="{{ name }}" type="hidden" value="{{ value }}" id="image_input_{{ name }}" />
+	<div class="i_input" id="image_display_{{ name }}">
+		{{ image }}
+	</div>
+	<a href="#" onclick="ajax_set_image();return false" title="Browse Server For File">Browse</a>
+</div>

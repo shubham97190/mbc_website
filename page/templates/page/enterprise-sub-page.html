@@ -1,0 +1,50 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if enterprise_sub_page.page_banner %}
+        <img src="{{ enterprise_sub_page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="enterprise-content">
+        <div class="container">
+            <div class="row align-items-center row-reverse">
+                <div class="col-lg-7 col-sm-6">
+                    <div class="enterprise-text">
+                        <h2>{{ enterprise_sub_page.section_1_title }}</h2>
+                        {{ enterprise_sub_page.section_1_content|safe }}
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                        <div class="location-marker smart-thumb">
+                        <img src="{{ enterprise_sub_page.section_1_image.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="smart-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="show-mob"> <h2>{{ enterprise_sub_page.section_2_title }}</h2></div>
+                    <div class="video-inner">
+                    <img src="{% if enterprise_sub_page.section_2_image %} {{ enterprise_sub_page.section_2_image.url }} {% endif %}" alt="">
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="hide-mob">
+                        <h2>{{ enterprise_sub_page.section_2_title }}</h2>
+                    </div>
+                    {{ enterprise_sub_page.section_2_content|safe }}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

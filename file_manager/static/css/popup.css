@@ -1,0 +1,115 @@
+body {
+	color: #000;
+	font-family: arial, helvetica, sans-serif;
+	margin: 0;
+	background-color: #eee;
+    font-size: 12px;
+}
+
+h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h1 .small, .h1 .small, h2 .small, .h2 .small, h3 .small, .h3 .small {
+    font-size: 90%;
+    color: #999;
+}
+
+#loader {
+    border:2px solid #2D608D;
+    position:absolute;
+    top: 100px;
+    left: 50%;
+    width: 80px;
+    padding: 10px;
+    text-align: center;
+}
+
+#loader .loadertext {
+    font-weight: bold;
+    color: #2D608D;
+}
+
+#buttons {
+    margin-bottom: 20px;
+}
+
+#buttons a {
+    color: #555;
+}
+
+#buttons .new i {
+    color: #4cae4c;
+}
+
+#buttons .upload i {
+    color: #357ebd;
+}
+
+#buttons .close_button i {
+    color: #d9534f;
+}
+
+#buttons .back i {
+    color: #46b8da;
+}
+
+
+#content {
+}
+
+#content .item_table {
+
+}
+
+#content .item_table .thumb {
+    font-size: 16px;
+    width: 5%;
+    color: #555;
+}
+
+#content .item_table .delete,
+#content .item_table .edit {
+    width: 5%;
+    font-size: 16px;
+    text-align:center;
+}
+
+
+#content .input_table a:link,
+#content .input_table a:visited,
+#content .input_table a:active,
+#content .input_table a:hover {
+	color: #556B82;
+}
+
+#content .items .item {
+    float:left;
+    width: 90px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background: #fff;
+}
+
+#content .items .item .thumb {
+    height: 80px;
+}
+
+#content .items .folder .thumb {
+    font-size: 50px;
+    color: #555;
+    padding: 5px;
+    text-align: center;
+}
+
+#content .items .folder .thumb a{
+    color: #555;
+}
+
+#content .items .item .details {
+    padding-top: 5px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#content .items .item .name {
+    font-size: 1.1em;
+    height: 60px;
+}

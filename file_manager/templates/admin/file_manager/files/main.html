@@ -1,0 +1,69 @@
+{% extends "admin/file_manager/file-manager-base.html" %}
+
+
+{% load thumbnail %}
+
+{% block breadcrumbs %}
+    <li class="active">Files</li>
+{% endblock %}
+
+
+{% block buttons %}
+	{% if input_name %}
+		<div class="pull-left">
+            <a href="{% url 'admin_file_new_folder' input_name %}?{{ request.META.QUERY_STRING }}">New Folder</a>
+            <a href="{% url 'admin_file_new_folder' input_name %}?{{ request.META.QUERY_STRING }}">Upload File</a>
+        </div>
+    	<div class="pull-right">
+            <a href="javascript:window.close()" class="btn btn-default close_button"><i class="glyphicon glyphicon-remove"></i>Close</a>
+        </div>
+        <div class="clearfix"></div>
+    {% else %}
+        <div class="pull-left">
+        	<a href="{% url 'admin_cke_file_new_folder' %}?{{ request.META.QUERY_STRING }}" class="btn btn-default new"><i class="glyphicon glyphicon-plus"></i> New Folder</a>
+    		<a href="{% url 'admin_cke_file_upload_file' %}?{{ request.META.QUERY_STRING }}" class="btn btn-default upload"><i class="glyphicon glyphicon-arrow-up"></i> Upload File</a>
+        </div>
+    	<div class="pull-right">
+            <a href="javascript:window.close()" class="btn btn-default close_button"><i class="glyphicon glyphicon-remove"></i> Close</a>
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    {% if folders or files %}
+    	<form name="pageform" id="pageform" action="">
+            <table class="table table-bordered table-striped item_table">
+                {% for folder in folders %}
+                    <tr>
+                        <td class="thumb"><i class="glyphicon glyphicon-folder-open"></i></td>
+                        {% if input_name %}
+                            <td class="name"><a href="{% url 'admin_file_folder' input_name folder.id %}?{{ request.META.QUERY_STRING }}">{{ folder.name }}</td>
+                            <td class="edit"><a href="{% url 'admin_file_edit_folder' input_name folder.id %}?{{ request.META.QUERY_STRING }}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                            <td class="delete"><a href="{% url 'admin_file_delete_folder' input_name folder.id %}?{{ request.META.QUERY_STRING }}" onclick="return confirm('Are you sure you want to delete this folder?')"><i class="glyphicon glyphicon-trash"></i></a></td>
+                        {% else %}
+                            <td class="name"><a href="{% url 'admin_cke_file_folder' folder.id %}?{{ request.META.QUERY_STRING }}">{{ folder.name }}</td>
+                            <td class="edit"><a href="{% url 'admin_cke_file_edit_folder' folder.id %}?{{ request.META.QUERY_STRING }}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                            <td class="delete"><a href="{% url 'admin_cke_file_delete_folder' folder.id %}?{{ request.META.QUERY_STRING }}" onclick="return confirm('Are you sure you want to delete this folder?')"><i class="glyphicon glyphicon-trash"></i></a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                {% for file in files %}
+                    <tr>
+                        <td class="thumb"><i class="glyphicon glyphicon-file"></i></td>
+                        {% if input_name %}
+                            <td class="name"><a href="javascript:setFile('{{ input_name }}','{{ file.id }}','{{ file.file.url }}');">{{ file }}</a></td>
+                            <td class="edit"><a href="{% url 'admin_file_edit_file' input_name file.id %}?{{ request.META.QUERY_STRING }}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                            <td class="delete"><a href="{% url 'admin_file_delete_file' input_name file.id %}?{{ request.META.QUERY_STRING }}" onclick="return confirm('Are you sure you want to delete this file?')"><i class="glyphicon glyphicon-trash"></i></a></td>
+                        {% else %}
+                            <td class="name"><a href="javascript:setFileCKE('{{ file.file.url }}');">{{ file }}</a></td>
+                            <td class="edit"><a href="{% url 'admin_cke_file_edit_file' file.id %}?{{ request.META.QUERY_STRING }}"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                            <td class="delete"><a href="{% url 'admin_cke_file_delete_file' file.id %}?{{ request.META.QUERY_STRING }}" onclick="return confirm('Are you sure you want to delete this file?')"><i class="glyphicon glyphicon-trash"></i></a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </form>
+    {% endif %}
+{% endblock %}

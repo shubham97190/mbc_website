@@ -1,0 +1,48 @@
+{% extends "admin/file_manager/file-manager-base.html" %}
+
+{% block breadcrumbs %}
+    {% if input_name %}
+        <li><a href="{% url 'admin_file_uploader' input_name %}?{{ request.META.QUERY_STRING }}">Files</a></li>
+        {% if file.folder %}
+            {% for breadcrumb in folder.get_breadcrumbs %}
+                <li><a href="{% url 'admin_file_folder' input_name breadcrumb.id %}?{{ request.META.QUERY_STRING }}">{{ breadcrumb }}</a></li>
+            {% endfor %}
+            <li class="active">Edit File</li>
+        {% endif %}
+    {% else %}
+        <li><a href="{% url 'admin_cke_file_uploader' %}?{{ request.META.QUERY_STRING }}">Files</a></li>
+        {% if file.folder %}
+            {% for breadcrumb in file.folder.get_breadcrumbs %}
+                <li><a href="{% url 'admin_cke_file_folder' breadcrumb.id %}?{{ request.META.QUERY_STRING }}">{{ breadcrumb }}</a></li>
+            {% endfor %}
+        {% endif %}
+        <li class="active">Edit File</li>
+    {% endif %}
+{% endblock %}
+
+{% block buttons %}
+    {% if input_name %}
+        {% if file.folder %}
+            <a href="{% url 'admin_file_folder' input_name file.folder.id %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+        {% else %}
+            <a href="{% url 'admin_file_uploader' input_name %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+        {% endif %}
+    {% else %}
+        {% if file.folder %}
+            <a href="{% url 'admin_cke_file_folder' file.folder.id %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+        {% else %}
+            <a href="{% url 'admin_cke_file_uploader' %}?{{ request.META.QUERY_STRING }}" class="btn btn-default back"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h3>Edit File <small>{{ file }}</small></h3>
+    <form action="" method="post"  enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {% include "admin/file_manager/partials/form.html" with form=form %}
+		<div class="form-group form-actions">
+			<input type="submit" class="btn btn-primary" value="Save" />
+		</div>
+    </form>
+{% endblock %}

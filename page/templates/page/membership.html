@@ -1,0 +1,36 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.banner %}
+        <img src="{{ page.banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+ 
+{% block content %}  
+    <div class="enterprise-content blog-content">
+        <div class="container">
+            {% for p in page %}
+            <div class="d-flex justify-content-start">
+                <div class="col-lg-10 col-sm-8">
+                    <div class="membership-text-block">
+                        <h3>{{ p.title }}</h3>
+                        {{ p.description|safe }}
+                    </div>
+                </div>
+                <div class="col-lg-10 col-sm-8">
+                    <div class="stats-mobthumb">
+                        <img src="{% if p.image_1 %}{{ p.image_1.url }} {% endif %}" alt="" />
+                    </div>
+                    <div class="stats-thumb">
+                        <img src="{% if p.image_2 %}{{ p.image_2.url }} {% endif %}" alt="" />
+                    </div>
+                </div>
+            </div>
+            {% if not forloop.last %}  <hr/> {% endif %}
+            {% endfor %}-->
+        </div>
+    </div>
+{% endblock %}

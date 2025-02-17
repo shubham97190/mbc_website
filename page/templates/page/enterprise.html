@@ -1,0 +1,178 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.banner %}
+        <img src="{{ page.banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="enterprise-content abstract-bg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-sm-6">
+                <div class="enterprise-text">
+                    <h2>{{ enterprise_page.section_1_title }}</h2>
+                    {{ enterprise_page.section_1_description|safe }}
+                </div>
+            </div>
+            <div class="col-lg-5 col-sm-6 abstract-mob-bg">
+                <div class="location-marker">
+                    <img src="{% if enterprise_page.section_1_image %} {{ enterprise_page.section_1_image.url }} {% endif %}" width="800" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="help-steps">
+    <div class="container">
+        <h2>{{ enterprise_page.section_2_main_title}}</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="steps-box">
+                    <div class="step-number">1</div>
+                    <div class="step-des">
+                        <p>{{ enterprise_page.section_2_sub_title_1 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="steps-box">
+                    <div class="step-number">2</div>
+                    <div class="step-des">
+                        <p>{{ enterprise_page.section_2_sub_title_2 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="steps-box">
+                    <div class="step-number">3</div>
+                    <div class="step-des">
+                        <p>{{ enterprise_page.section_2_sub_title_3 }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="enterprise-logos">
+    <div class="container">
+        <div class="row align-items-center d-flex">
+            {% for logo_obj in as_seen_in %}
+                <div class="col-2"><img src="{% if logo_obj.logo %}{{ logo_obj.logo.url }} {% endif %}" alt="" /></div>
+            {% endfor %} 
+        </div>
+        <h3>AS SEEN IN</h3>
+    </div>
+</div>
+<div class="enterprise-video">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="show-mob"><h2>{{ enterprise_page.section_3_title }}</h2></div>
+                <div class="video-inner">
+                    <img src="{% static 'images/enterprise-video.jpg' %}" alt="" />
+                    <hr />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="hide-mob">
+                    <h2>{{ enterprise_page.section_3_title }}</h2>
+                </div>
+                {{ enterprise_page.section_3_description|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="casestudy-section">
+    <div class="container">
+        <div class="casestudy-inner">
+            <div class="row">
+                <div class="col-md-5 col-lg-4"></div>
+                <div class="col-md-7 col-lg-8">
+                    <div class="sectors-tab">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="retail-tab" data-toggle="tab" href="#retail" role="tab" aria-controls="retail" aria-selected="true">{{ enterprise_page.section_4_part_1_title }}</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="liveevent-tab" data-toggle="tab" href="#liveevent" role="tab" aria-controls="liveevent" aria-selected="false">{{ enterprise_page.section_4_part_2_title }}</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="onthemove-tab" data-toggle="tab" href="#onthemove" role="tab" aria-controls="onthemove" aria-selected="false">{{ enterprise_page.section_4_part_3_title }}</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="smart-tab" data-toggle="tab" href="#smart" role="tab" aria-controls="smart" aria-selected="false">{{ enterprise_page.section_4_part_4_title }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="retail" role="tabpanel" aria-labelledby="retail-tab">
+                    <div class="row row-reverse">
+                        <div class="col-md-5 col-lg-4">
+                            <h2>{{ enterprise_page.section_4_part_1_title }}</h2>
+                            {{ enterprise_page.section_4_part_1_description|safe }}
+                            
+                            <a href="{% url 'enterprise-sub-page' enterprise_page.section_4_part_1_more_button_link %}" class="text-link">SELECT A SECTOR TO FIND OUT MORE</a>
+                        </div>
+                        <div class="col-md-7 col-lg-8">
+                            <div class="tab-thumbs">
+                            <img src="{% if enterprise_page.section_4_part_1_image %}{{ enterprise_page.section_4_part_1_image.url }} {% endif %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="liveevent" role="tabpanel" aria-labelledby="liveevent-tab">
+                    <div class="row row-reverse">
+                        <div class="col-md-5 col-lg-4">
+                            <h2>{{ enterprise_page.section_4_part_2_title }}</h2>
+                            {{ enterprise_page.section_4_part_2_description|safe }}
+                            <a href="{% url 'enterprise-sub-page' enterprise_page.section_4_part_2_more_button_link %}" class="text-link">SELECT A SECTOR TO FIND OUT MORE</a>
+                        </div>
+                        <div class="col-md-7 col-lg-8">
+                            <div class="tab-thumbs">
+                            <img src="{% if enterprise_page.section_4_part_2_image %}{{ enterprise_page.section_4_part_2_image.url }} {% endif %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="onthemove" role="tabpanel" aria-labelledby="onthemove-tab">
+                    <div class="row row-reverse">
+                        <div class="col-md-5 col-lg-4">
+                            <h2>{{ enterprise_page.section_4_part_3_title }}</h2>
+                            {{ enterprise_page.section_4_part_3_description|safe }}
+                            <a href="{% url 'enterprise-sub-page' enterprise_page.section_4_part_3_more_button_link %}" class="text-link">SELECT A SECTOR TO FIND OUT MORE</a>
+                        </div>
+                        <div class="col-md-7 col-lg-8">
+                            <div class="tab-thumbs">
+                            <img src="{% if enterprise_page.section_4_part_3_image %}{{ enterprise_page.section_4_part_3_image.url }} {% endif %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="smart" role="tabpanel" aria-labelledby="smart-tab">
+                    <div class="row row-reverse">
+                        <div class="col-md-5 col-lg-4">
+                            <h2>{{ enterprise_page.section_4_part_4_title }}</h2>
+                            {{ enterprise_page.section_4_part_4_description|safe }}
+                            <a href="{% url 'enterprise-sub-page' enterprise_page.section_4_part_4_more_button_link %}" class="text-link">SELECT A SECTOR TO FIND OUT MORE</a>
+                        </div>
+                        <div class="col-md-7 col-lg-8">
+                            <div class="tab-thumbs">
+                            <img src="{% if enterprise_page.section_4_part_4_image %} {{ enterprise_page.section_4_part_4_image.url }} {% endif %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

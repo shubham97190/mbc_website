@@ -1,0 +1,84 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.page_banner %}
+        <img src="{{ page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}    
+    <div class="faq-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-4">
+                    <div class="enterprise-text">
+                        <h2>{{ page.title }}</h2>
+                        {{ page.description|safe }}
+                    </div>
+                </div>
+                <div class="col-lg-7 col-sm-8">
+                    <div class="faq-collapse">
+                        <div class="accordion" id="accordionExample">
+                            {% for que in questions %}
+                                <div class="card">
+                                    <div class="card-header" id="heading-{{que.id}}">
+                                        <h2 class="mb-0">
+                                            <button class="btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-{{que.id}}" aria-expanded="false" aria-controls="collapse-{{que.id}}">
+                                                {{ que.question }}
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="collapse-{{que.id}}" class="collapse" aria-labelledby="heading-{{que.id}}" data-parent="#accordionExample" style="">
+                                        <div class="card-body">
+                                            {{ que.answer|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="faq-quote-section">
+        <div class="faq-help-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        IF YOU Can’t find the answer you’re looking for, WHY NOT CONTACT US TO FIND OUT MORE!
+                    </div>
+                    <div class="col-md-5">
+                        <a href="{% url 'contact' %}">WE’D LOVE TO HEAR FROM YOU.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        “Another mbc_website Quote Goes Here!”
+    </div>
+    <div class="award-section faq-award-section">
+        <div class="container">
+            <div class="row">
+                {% for awd_logo in awards%}
+                    <div class="col-2">
+                        <img src="{% if awd_logo.logo %} {{ awd_logo.logo.url }} {% endif %}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+            <h2>AWARD WINNING Technology</h2>
+        </div>
+    </div>
+    <div class="getinvolved-section about-involved">
+        <div class="contact-thumb">
+            <img src="{% static 'images/iphone-placeholder01.svg' %}" alt="" />
+            <div class="involved-link">
+                <label for="">Are you a developer?</label>
+                <a href="{% url 'developers' %}">GET INVOLVED!</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
