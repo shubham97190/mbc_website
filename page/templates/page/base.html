@@ -52,8 +52,8 @@
                                 <a class="nav-link {% if request.path == membership_url %}active{% endif %}" href="{{ membership_url }}">Membership</a>
                             </li>
                             <li class="nav-item">
-                                {% url 'stats' as stats_url %}
-                                <a class="nav-link {% if request.path == stats_url %}active{% endif %}" href="{{ stats_url }}">Location & Schedule</a>
+                                {% url 'location' as location_url %}
+                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Location & Schedule</a>
                             </li>
                             <li class="nav-item">
                                 {% url 'blog' as blog_url %}
@@ -92,6 +92,7 @@
                 <div class="col-md-9">
                     © Copyright Limited 2020. All rights reserved.
                 </div>
+
                 <div class="col-md-3 float-right">
                     <div class="social-icons">
                         <ul>
