@@ -90,25 +90,25 @@ WSGI_APPLICATION = 'mbc_website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'mbc_website_db',
-#         'USER': 'root',
-#         'PASSWORD': 'Look4word4u',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#         'OPTIONS': {
-#             # "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
-#         }
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mbc_website_db',
+        'USER': 'root',
+        'PASSWORD': 'Look4word4u',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            # "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
