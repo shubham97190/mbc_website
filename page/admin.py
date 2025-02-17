@@ -1,6 +1,7 @@
 from django.contrib import admin
 from djboomin.widgets import RichTextEditorWidget
 from solo.admin import SingletonModelAdmin
+from location.models import Location
 
 from mbc_website.global_functions import ReadOnlyAdmin
 from .models import *
@@ -155,3 +156,6 @@ class BlogAdmin(ReadOnlyAdmin, SingletonModelAdmin):
         ),
         ("Heading Section", {"fields": ("title", "description")}),
     )
+@admin.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}
