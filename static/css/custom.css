@@ -74,6 +74,8 @@ hr{border-color: #a2a2a2;}
 .blog-heading{color: #189ADD;font-weight: 500;font-size:0.975rem;border-bottom: solid 1px #bdc2c8;padding:10px 0;margin:0 10px}
 .blog-heading a{color:#73859D;float: right;}
 
+footer{padding:30px 0 40px;position: relative;}
+/* footer:before{content:'';background:url(../images/top-curve.svg) center bottom no-repeat;background-size:100%;position:absolute;top:-147px;left:0;right: 0; height: 150px;} */
 footer{padding:1rem 0 1rem;position: relative;}
 .social-icons{position: absolute;bottom: 0;}
 footer .social-icons ul{margin:0;padding:0; display: flex;}
