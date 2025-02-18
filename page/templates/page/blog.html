@@ -45,7 +45,7 @@
                             <div class="card" style="height: 14rem">
                                 <div class="card-body">
                                     <h5>{{forloop.counter}}) {{ blog.title }}</h5>
-                                    <p >{{ blog.content | safe | truncatewords:"50" }}
+                                    <p >{{ blog.content | safe | truncatewords:"40" }}
                                         <a href="{% url 'blog-detail' blog.slug %}">Read more</a></p>
                                     <a href="#" class="card-link bottom-right">{{ blog.date|date:"d M Y H:i" }}</a>
                                 </div>

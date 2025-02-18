@@ -75,7 +75,7 @@ hr{border-color: #a2a2a2;}
 .blog-heading a{color:#73859D;float: right;}
 
 footer{padding:30px 0 40px;position: relative;}
-footer:before{content:'';background:url(../images/top-curve.svg) center bottom no-repeat;background-size:100%;position:absolute;top:-147px;left:0;right: 0; height: 150px;}
+/* footer:before{content:'';background:url(../images/top-curve.svg) center bottom no-repeat;background-size:100%;position:absolute;top:-147px;left:0;right: 0; height: 150px;} */
 .social-icons{position: absolute;bottom: 0;}
 footer .social-icons ul{margin:0;padding:0; display: flex;}
 footer .social-icons ul li{ list-style:none;margin-right:15px}
