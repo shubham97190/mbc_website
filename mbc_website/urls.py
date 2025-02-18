@@ -25,7 +25,6 @@ urlpatterns = [
     # File Manager
     path('admin/cke-image-uploader/', include('file_manager.images.adminckeurls')),
     path('admin/cke-file-uploader/', include('file_manager.files.adminckeurls')),
-    path("select2/", include("django_select2.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

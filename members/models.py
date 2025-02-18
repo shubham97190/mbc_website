@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from colorfield.fields import ColorField
 
 STATUS = (
@@ -35,7 +36,7 @@ class Season(models.Model):
     updated_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return "Name {0} ({1})".format(self.name, STATUS[self.status])
+        return "Name {0} ({1})".format(self.name, self.status)
 
 
 class Member(models.Model):
@@ -48,6 +49,8 @@ class Member(models.Model):
     is_subscribe_for_email = models.BooleanField(default=True, verbose_name="Subscribes to Updates")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_created_by")
+    updated_by  = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_updated_by")
 
     def __str__(self):
         return "Name {0} ({1})".format(self.name, self.name_on_tag)
