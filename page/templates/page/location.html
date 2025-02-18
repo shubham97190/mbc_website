@@ -3,7 +3,7 @@
 
 {% block banner %}
 {% if page.banner %}
-<img src="{{ page.banner.url }}" alt="">
+<img src="{{ page.banner.url }}" xmlns="http://www.w3.org/1999/html" alt="">
 {% else %}
 <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
 {% endif %}
@@ -15,7 +15,7 @@
         <div class="d-flex justify-content-start">
             <div class="float-left">
                 {% for l in locations %}
-                <div class="col-lg-10 col-sm-10">
+                <div class="col-lg-12 col-sm-10">
                     <div class="membership-text-block">
                         <h3>{{ l.title }}</h3>
                         {{ l.description|safe }}
@@ -25,21 +25,20 @@
                 {% endfor %}
             </div>
             <div class="float-right">
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-12 col-sm-6">
                     <div class="membership-text-block">
-                    <iframe src="https://calendar.google.com/calendar/embed?src=5e85feakodbqtt02plcolhfpa4%40group.calendar.google.com&ctz=America/Toronto"
-                            style="border: 0"
-                            width="800"
-                            height="600"
-                            frameborder="0"
-                            scrolling="no">
-                    </iframe>
+                        <iframe src="https://calendar.google.com/calendar/embed?src=5e85feakodbqtt02plcolhfpa4%40group.calendar.google.com&ctz=America/Toronto"
+                                style="border: 0"
+                                width="750"
+                                height="650"
+                                frameborder="0"
+                                scrolling="no">
+                        </iframe>
+                        </br>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 {% endblock %}
