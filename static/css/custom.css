@@ -167,7 +167,7 @@ footer .social-icons ul li a{color:#009ADD;font-size: 1.5rem;}
 
 .blog-content{padding:1rem 0}
 .blog-listing .blog-box{margin-bottom: .7rem;}
-
+.card-body {padding: 1rem;}
 .blog-pagination {margin-bottom:5rem;}
 .blog-pagination ul{display: flex; justify-content: center;}
 .blog-pagination ul li{list-style: none;margin:0 15px}
