@@ -141,11 +141,11 @@ footer .social-icons ul li a{color:#009ADD;font-size: 1.5rem;}
 .getinvolved-section{padding:20px 0 80px}
 
 .membership-body{margin:.1rem 0 .9rem}
-.membership-text-block{max-width: 80rem; margin: 2rem 0 0 0}
+.membership-text-block{max-width: 80rem; margin: .5rem 0 0 0}
 .membership-icons{text-align: left;margin-bottom:50px;}
 .membership-icons img{max-height: 150px;}
 .membership-image img{padding:30px 0;margin:50px 0 0}
-
+.image-block {max-width: 50rem; margin: .5rem 0 0 0}
 .faq-content{padding:100px 0 0}
 .faq-award-section{background:url(../images/rotate-curve.svg) center top no-repeat;display: flex; text-align: center; align-items: center;padding:150px 0 0; position: relative; margin-top: -110px;}
 .faq-help-text{padding:0rem 0 10rem;font-size: 1rem; text-transform: uppercase;margin-top:6rem; text-align: left;}

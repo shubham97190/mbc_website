@@ -60,6 +60,10 @@
                                 <a class="nav-link {% if request.path == blog_url %}active{% endif %}" href="{{ blog_url }}">Latest Information</a>
                             </li>
                             <li class="nav-item">
+                                {% url 'rules' as rules_url %}
+                                <a class="nav-link {% if request.path == rules_url %}active{% endif %}" href="{{ rules_url }}">Rules</a>
+                            </li>
+                            <li class="nav-item">
                                 {% url 'enterprise' as enterprise_url %}
                                 <a class="nav-link dropdown-toggle {% if request.path == enterprise_url %}active{% endif %}" href="{{ enterprise_url }}" id="dropdown10">Roasters</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown10">

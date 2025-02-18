@@ -2,6 +2,7 @@ from django.contrib import admin
 from djboomin.widgets import RichTextEditorWidget
 from solo.admin import SingletonModelAdmin
 from location.models import Location
+from rules.models import Rules
 
 from mbc_website.global_functions import ReadOnlyAdmin
 from .models import *
@@ -54,4 +55,9 @@ class LocationAdmin(admin.ModelAdmin):
 @admin.register(HomePageCarousel)
 class HomePageCarouselAdmin(admin.ModelAdmin):
     list_display = ["title", "image", "is_visible", "added_date"]
+    formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}
+
+
+@admin.register(Rules)
+class RulesAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}

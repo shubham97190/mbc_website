@@ -18,7 +18,7 @@ urlpatterns = [
     # path('roaster/<slug:slug>/', EnterpriseSubPageView.as_view(), name='roaster-sub-page'),
     path('membership/', MembershipPageView.as_view(), name='membership'),
     path('location/', LocationPageView.as_view(), name='location'),
-    path('faq/', FAQPageView.as_view(), name='faq'),
+    path('rules/', RulesPageView.as_view(), name='rules'),
     path('sitemap/', SitemapPageView.as_view(), name='sitemap'),
     path('<slug:slug>/', GenericPageView.as_view(), name='page'),
 

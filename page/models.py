@@ -12,7 +12,7 @@ class Page(models.Model):
         abstract = True
 
 
-class BaseModel(Page):
+class BaseModel(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to="pages", blank=True)
@@ -21,7 +21,7 @@ class BaseModel(Page):
         abstract = True
 
 
-class Home(BaseModel):
+class Home(Page, BaseModel):
     def __str__(self):
         return self.title
 

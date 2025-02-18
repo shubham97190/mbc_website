@@ -11,6 +11,7 @@ from enquiry.forms import EnquiryForm
 from faq.models import Question
 from .models import *
 from location.models import Location
+from rules.models import Rules
 
 
 # Create your views here.
@@ -143,4 +144,13 @@ class LocationPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["locations"] = Location.objects.all()
+        return context
+
+
+class RulesPageView(TemplateView):
+    template_name = "page/rules.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["rules"] = Rules.objects.all()
         return context
