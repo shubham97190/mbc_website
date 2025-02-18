@@ -21,8 +21,9 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["page"] = Home.get_solo()
+        context["page"] = Home.objects.all()
         context["blogs"] = Article.objects.all().order_by("-date")[:3]
+        context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("-added_date")
         return context
 
 

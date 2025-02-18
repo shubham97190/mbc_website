@@ -10,12 +10,12 @@
 {% endblock %}
  
 {% block content %}  
-    <div class="enterprise-content blog-content">
+    <div class="enterprise-content">
         <div class="container">
             {% for p in page %}
             <div class="d-flex justify-content-start">
                 <div class="col-lg-10 col-sm-8">
-                    <div class="membership-text-block">
+                    <div class="home-text-block">
                         <h3>{{ p.title }}</h3>
                         {{ p.description|safe }}
                     </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             {% if not forloop.last %}  <hr/> {% endif %}
-            {% endfor %}-->
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

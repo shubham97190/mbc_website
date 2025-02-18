@@ -1,6 +1,7 @@
 from django.db import models
 from solo.models import SingletonModel
 
+
 # Create your models here.
 
 
@@ -13,7 +14,7 @@ class Client(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["order",]
+        ordering = ["order", ]
 
 
 class WebsiteSettings(SingletonModel):

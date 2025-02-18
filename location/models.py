@@ -1,5 +1,7 @@
 from django.db import models
 from page.models import Page
+
+
 # Create your models here.
 
 class Location(Page, models.Model):
