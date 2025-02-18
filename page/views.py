@@ -10,6 +10,7 @@ from blog.models import Article
 from enquiry.forms import EnquiryForm
 from faq.models import Question
 from .models import *
+from location.models import Location
 
 
 # Create your views here.
@@ -74,7 +75,6 @@ class MembershipPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = Membership.objects.all()
-        context["membership"] = Membership.objects.all()
         return context
 
 
@@ -133,4 +133,13 @@ class SitemapPageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["blogs"] = Article.objects.filter(published=True).order_by("-date")
         context["genericpage"] = GenericPage.objects.all()
+        return context
+
+
+class LocationPageView(TemplateView):
+    template_name = "page/location.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["locations"] = Membership.objects.all()
         return context

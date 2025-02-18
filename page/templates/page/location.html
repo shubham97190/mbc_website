@@ -1,7 +1,45 @@
-<iframe src="https://calendar.google.com/calendar/embed?src=5e85feakodbqtt02plcolhfpa4%40group.calendar.google.com&ctz=America/Toronto"
-        style="border: 0"
-        width="800"
-        height="600"
-        frameborder="0"
-        scrolling="no">
-</iframe>
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+{% if page.banner %}
+<img src="{{ page.banner.url }}" alt="">
+{% else %}
+<img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="enterprise-content">
+    <div class="container">
+        <div class="d-flex justify-content-start">
+            <div class="float-left">
+                {% for l in locations %}
+                <div class="col-lg-12 col-sm-10">
+                    <div class="membership-text-block">
+                        <h3>{{ l.title }}</h3>
+                        {{ l.description|safe }}
+                    </div>
+                </div>
+                {% if not forloop.last %}  <hr/> {% endif %}
+                {% endfor %}
+            </div>
+            <div class="float-right">
+                <div class="col-lg-8 col-sm-6">
+                    <div class="membership-text-block">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=5e85feakodbqtt02plcolhfpa4%40group.calendar.google.com&ctz=America/Toronto"
+                            style="border: 0"
+                            width="800"
+                            height="600"
+                            frameborder="0"
+                            scrolling="no">
+                    </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

@@ -156,6 +156,7 @@ class BlogAdmin(ReadOnlyAdmin, SingletonModelAdmin):
         ),
         ("Heading Section", {"fields": ("title", "description")}),
     )
+
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}
