@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block banner %}
-    {% if page.page_banner %}
-        <img src="{{ page.page_banner.url }}" alt="">
-    {% else %}
-        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
-    {% endif %}
+{% if enterprise_sub_page.page_banner %}
+<img src="{{ enterprise_sub_page.page_banner.url }}" alt="">
+{% else %}
+<img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+{% endif %}
 {% endblock %}
 
 {% block content %}
