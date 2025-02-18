@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['192.168.5.138', 'mbc_website.24livehost.com', '111.93.53.163',
 
 INSTALLED_APPS = [
     'djboomin',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'django_recaptcha',
     'easy_thumbnails',
     'file_manager',
+    'django_select2',
+    'easy_select2',
 
     # Modules
     'page',
@@ -53,6 +56,7 @@ INSTALLED_APPS = [
     'blog',
     'location',
     'rules',
+    'members'
 ]
 
 MIDDLEWARE = [
