@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('tournament.urls')),
     path('', include('page.urls')),
 
     # File Manager

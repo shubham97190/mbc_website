@@ -1,0 +1,153 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    {% if page.page_banner %}
+        <img src="{{ page.page_banner.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-5">
+                <div class="enterprise-text">
+                    <h3>{{ page.title }}</h3>
+                    <form id="enquiry-form" method="POST" action="">
+                        {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{ form.errors }}
+                            </div>
+                        {% endif %}
+                        {% if messages %}
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {% for message in messages %}
+                                    <h2>{{message}}</h2>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.tournament.label_tag }}
+                                    {{ form.tournament }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group form-check">
+                                    <!-- {{ form.category.label_tag }} -->
+                                    {{ form.category }}
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.name.label_tag }}
+                                    {{ form.name }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.certificate_name.label_tag }}
+                                    {{ form.certificate_name }}
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.partner_name.label_tag }}
+                                    {{ form.partner_name }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.certificate_partner_name.label_tag }}
+                                    {{ form.certificate_partner_name }}
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            {{ form.team_name.label_tag }}
+                            {{ form.team_name }}
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.mobile.label_tag }}
+                                    {{ form.mobile }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="form-group">
+                            {{ form.comments.label_tag }}
+                            {{ form.comments }}
+                        </div>
+                    
+                        <div class="form-group form-check">
+                            {{ form.unisex_cap_order }}
+                            {{ form.unisex_cap_order.label_tag }}
+                        </div>
+                    
+                        <div class="form-group form-check">
+                            {{ form.is_subscribe_for_email }}
+                            {{ form.is_subscribe_for_email.label_tag }}
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    
+                                    {{form.captcha}}
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-5">
+                <div class="contact-thumb">
+                    <img src="{% static 'images/contact-us.jpeg' %}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"
+></script>
+<script>
+    $(document).ready(function() {
+        $('.django-select2').select2();
+    });
+    </script>
+{% endblock %}

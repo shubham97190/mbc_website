@@ -106,9 +106,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mbc_website_db',
         'USER': 'root',
-        'PASSWORD': 'Look4word4u',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '3307',
         'OPTIONS': {
             # "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
         }
