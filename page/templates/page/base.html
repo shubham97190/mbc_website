@@ -21,9 +21,9 @@
     <div class="wrapper">
         <div class="main-banner">
             <div class="site-logo">
-                <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo-skignz.png' %}" alt="">
-                </a>
+<!--                <a href="{% url 'home' %}">-->
+<!--                    <img src="{% static 'images/logo-skignz.png' %}" alt="">-->
+<!--                </a>-->
             </div>
             {% block banner %}{% endblock %}
             
@@ -47,34 +47,38 @@
                                 {% url 'home' as home_url %}
                                 <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Home</a>
                             </li>
-                            <li class="nav-item">
-                                {% url 'membership' as membership_url %}
-                                <a class="nav-link {% if request.path == membership_url %}active{% endif %}" href="{{ membership_url }}">Membership</a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                {% url 'membership' as membership_url %}-->
+<!--                                <a class="nav-link {% if request.path == membership_url %}active{% endif %}" href="{{ membership_url }}">Membership</a>-->
+<!--                            </li>-->
                             <li class="nav-item">
                                 {% url 'location' as location_url %}
                                 <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Location & Schedule</a>
                             </li>
-                            <li class="nav-item">
-                                {% url 'blog' as blog_url %}
-                                <a class="nav-link {% if request.path == blog_url %}active{% endif %}" href="{{ blog_url }}">Latest Information</a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                {% url 'blog' as blog_url %}-->
+<!--                                <a class="nav-link {% if request.path == blog_url %}active{% endif %}" href="{{ blog_url }}">Latest Information</a>-->
+<!--                            </li>-->
                             <li class="nav-item">
                                 {% url 'rules' as rules_url %}
                                 <a class="nav-link {% if request.path == rules_url %}active{% endif %}" href="{{ rules_url }}">Rules</a>
                             </li>
                             <li class="nav-item">
-                                {% url 'enterprise' as enterprise_url %}
-                                <a class="nav-link dropdown-toggle {% if request.path == enterprise_url %}active{% endif %}" href="{{ enterprise_url }}" id="dropdown10">Roasters</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown10">
-                                    <div class="dropdown-inner">
-                                    {% url 'enterprise-sub-page' 'smart' as smart_url %}
-                                    <a class="dropdown-item {% if request.path == smart_url %}active{% endif %}" href="{{ smart_url }}">Summer</a>
-                                    {% url 'enterprise-sub-page' 'on-the-move' as on_the_move_url %}
-                                    <a class="dropdown-item {% if request.path == on_the_move_url %}active{% endif %}" href="{{ on_the_move_url }}">Winter</a>
-                                     </div>
-                                </div>
+                                {% url 'registration' as registration_url %}
+                                <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">Registration</a>
                             </li>
+<!--                            <li class="nav-item">-->
+<!--                                {% url 'enterprise' as enterprise_url %}-->
+<!--                                <a class="nav-link dropdown-toggle {% if request.path == enterprise_url %}active{% endif %}" href="{{ enterprise_url }}" id="dropdown10">Roasters</a>-->
+<!--                                <div class="dropdown-menu" aria-labelledby="dropdown10">-->
+<!--                                    <div class="dropdown-inner">-->
+<!--                                    {% url 'enterprise-sub-page' 'smart' as smart_url %}-->
+<!--                                    <a class="dropdown-item {% if request.path == smart_url %}active{% endif %}" href="{{ smart_url }}">Summer</a>-->
+<!--                                    {% url 'enterprise-sub-page' 'on-the-move' as on_the_move_url %}-->
+<!--                                    <a class="dropdown-item {% if request.path == on_the_move_url %}active{% endif %}" href="{{ on_the_move_url }}">Winter</a>-->
+<!--                                     </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
                             <li class="nav-item">
                                 {% url 'contact' as contact_url %}
                                 <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="{{ contact_url }}">Contact</a>

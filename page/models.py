@@ -1,6 +1,6 @@
 from django.db import models
-from solo.models import SingletonModel
 from django.urls import reverse
+from solo.models import SingletonModel
 
 
 class Page(models.Model):

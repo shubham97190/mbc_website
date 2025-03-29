@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path, PurePath
+from import_export.formats.base_formats import CSV
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +32,7 @@ ALLOWED_HOSTS = ['192.168.5.138', 'mbc_website.24livehost.com', '111.93.53.163',
 # Application definition
 
 INSTALLED_APPS = [
-    'djboomin',    
+    'djboomin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'file_manager',
     'colorfield',
+    'import_export',
+    'phonenumber_field',
 
     # Modules
     'page',
@@ -54,7 +57,8 @@ INSTALLED_APPS = [
     'blog',
     'location',
     'rules',
-    'members'
+    'members',
+    'tournament'
 ]
 
 MIDDLEWARE = [
@@ -170,3 +174,7 @@ RECAPTCHA_PUBLIC_KEY = '6Lfl6RcaAAAAAGrG946PcoD7YigQlUjgcK9cscRO'
 RECAPTCHA_PRIVATE_KEY = '6Lfl6RcaAAAAAG9YgPWcr9nRDlrZx-7KAiacU8W7'
 
 RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}
+
+IMPORT_FORMATS = [CSV]
+# single export options
+EXPORT_FORMATS = [CSV]

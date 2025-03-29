@@ -3,9 +3,9 @@
 
 {% block banner %}
 {% if page.page_banner %}
-<img src="{{ page.page_banner.url }}" style="height:60rem" alt="">
+<img src="{{ page.page_banner.url }}" alt="">
 {% else %}
-<img src="{% static 'images/mbc-cover-page.jpg' %}"  alt="">
+<img src="{% static 'images/mbc-cover-page.jpg' %}" style="height:50rem"  alt="">
 {% endif %}
 {% endblock %}
 
@@ -65,24 +65,6 @@
             </div>
         </div>
     </div>
-    <div class="blog-section">
-        <div class="container">
-            <h3>Recent Events</h3>
-            <div class="owl-carousel owl-theme blog-carousel">
-                {% for blog in blogs%}
-                <div class="card" style="height: 14rem">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ blog.title }}</h5>
-                        <p class="card-text">{{ blog.content | safe | truncatewords:"15" }}
-                        <a href="{% url 'blog-detail' blog.slug %}">Read more</a></p>
-                        <a href="#" class="card-link bottom-right">{{ blog.date|date:"d M Y H:i" }}</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
 </div>
 {% endblock %}
 

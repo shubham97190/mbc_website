@@ -8,13 +8,13 @@ STATUS = (
     (2, 'Completed'),
 )
 
-COLOR = (
+COLOR = [
     ('', 'Select Color'),
     ('#00FF00', 'Green'),
     ('#0000FF', 'Blue'),
     ('#FF0000', 'Red'),
     ('#FFFF00', 'Yellow'),
-)
+]
 
 LEVEL = (
     ('', 'Select Level'),
@@ -34,9 +34,11 @@ class Season(models.Model):
     description = models.TextField(blank=True, null=True)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="season_created_by")
+    updated_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="season_updated_by")
 
     def __str__(self):
-        return "Name {0} ({1})".format(self.name, self.status)
+        return "{0} ({1})".format(self.name, self.status)
 
 
 class Member(models.Model):
@@ -50,10 +52,10 @@ class Member(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_created_by")
-    updated_by  = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_updated_by")
+    updated_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="member_updated_by")
 
     def __str__(self):
-        return "Name {0} ({1})".format(self.name, self.name_on_tag)
+        return "{0} ({1})".format(self.name, self.name_on_tag)
 
 
 class SeasonMemberMapping(models.Model):
@@ -61,6 +63,8 @@ class SeasonMemberMapping(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="mapping_created_by")
+    updated_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="mapping_updated_by")
 
     class Meta:
         unique_together = ['season', 'member']

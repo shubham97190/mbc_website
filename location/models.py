@@ -1,10 +1,12 @@
 from django.db import models
+
+from makerchecker.models import MakerCheckerModel
 from page.models import Page
 
 
 # Create your models here.
 
-class Location(Page, models.Model):
+class Location(Page, MakerCheckerModel, models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
 
