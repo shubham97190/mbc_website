@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'colorfield',
     'import_export',
     'phonenumber_field',
+    'django_select2',
 
     # Modules
     'page',
@@ -178,3 +179,20 @@ RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:
 IMPORT_FORMATS = [CSV]
 # single export options
 EXPORT_FORMATS = [CSV]
+
+
+# CACHES = {
+#     # … default cache config and others
+#     "select2": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/2",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+
+# Tell select2 which cache configuration to use:
+# SELECT2_CACHE_BACKEND = "select2"
+SELECT2_USE_BUNDLED_JQUERY  = True
+SELECT2_USE_BUNDLED_SELECT2   = True
