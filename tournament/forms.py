@@ -41,12 +41,12 @@ class TournamentRegistrationForm(forms.ModelForm):
                                                        'placeholder': 'Name on Certificate (Leave empty if same as '
                                                                       'above)'}),
             'partner_name': forms.TextInput(attrs={'id': 'id_partner_name', 'class': 'form-control input-md',
-                                                   'placeholder': 'Your Partner Name (Add NA if not confirmed)'}),
+                                                   'placeholder': 'Your Partner Name (add NA if not confirmed)'}),
             'certificate_partner_name': forms.TextInput(
                 attrs={'id': 'id_certificate_partner_name', 'class': 'form-control input-md',
                        'placeholder': 'Partner Name on Certificate (Leave empty if same as above)'}),
             'team_name': forms.TextInput(attrs={'id': 'id_team_name', 'class': 'form-control input-md',
-                                                'placeholder': 'Team Name (Add NA if not sure)'}),
+                                                'placeholder': 'Team Name (add NA if not sure)'}),
             'mobile': forms.TextInput(
                 attrs={'id': 'id_mobile', 'class': 'form-control input-md', 'placeholder': 'Your Mobile Number'}),
             'email': forms.EmailInput(
