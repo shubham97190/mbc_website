@@ -8,7 +8,14 @@ jQuery(document).ready(function($) {
 });
 
 function fetchDetails($event){
-  fetch('tournament_details', '/tournament-details/', $event.value)
+  var value = $event.value
+  var link = $('div[name="tournament_term_condition"]');
+  fetch('tournament_details', '/tournament-details/', value)
+  if(value != '' && value != undefined){
+    link.attr('id','tournament_term_condition');
+  }else{
+    link.attr('id','');
+  }
 }
 
 function fetchTnc(){
@@ -18,9 +25,6 @@ function fetchTnc(){
      $('#tournament_term_condition').on('hidden.bs.modal', function (e) {
           $('#tournament_term_condition_content').html('')
      })
-  }else{
-    console.log("$('#tournament_term_condition')", $('#tournament_term_condition'))
-    $('#tournament_term_condition').modal('hide')
   }
 }
 
