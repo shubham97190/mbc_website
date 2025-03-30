@@ -200,3 +200,5 @@ footer .social-icons ul li a{color:#009ADD;font-size: 1.5rem;}
 .blog-share .social-icons ul{display: flex;justify-content: center;margin:0;padding:0}
 .blog-share .social-icons ul li{ list-style: none;margin:0 10px;}
 .blog-share .social-icons ul li a{color:#73859D}
+
+.card-header-title-custom {background-color:#189ADD !important; color: white}

@@ -1,0 +1,96 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+{% if enterprise_sub_page.page_banner %}
+<img src="{{ enterprise_sub_page.page_banner.url }}" alt="">
+{% else %}
+<img src="{% static 'images/mbc-cover-page1.jpg' %}" style="height:30rem"  alt="">
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="enterprise-content">
+    <div class="container">
+        <div class="d-flex justify-content-start">
+            <div class="col-lg-8 col-sm-6">
+                <div class="blog-title-text">
+                    <h3>{{ page.title }} Tournament List</h3>
+                    {{ page.description|safe }}
+                </div>
+            </div>
+            {% comment %}
+            <div class="col-lg-8 col-sm-6">
+                <div class="blog-filter">
+                    Filter posts by:
+                    <select name="" id="">
+                        <option value="" selected>Select</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>
+                </div>
+            </div>
+            {% endcomment %}
+        </div>
+    </div>
+
+    <div class="blog-listing">
+        <div class="container">
+            <div class="clearfix">
+                <div class="float-left>">
+                    {% for tournament in tournaments %}
+                    <div class="d-flex justify-content-start blog-box">
+                        <div class="col-lg-8 col-sm-5">
+                            <div class="card mb-3">
+                                <div class="card-header" >{{ tournament.name }}</div>
+                                <div class="card-body">
+                                    <span><strong>Title:</strong> {{ tournament.title }}</span></br>
+                                    <span><strong>Tournament Date/Time:</strong> {{ tournament.tournament_date_time }}
+                                               <span class="badge badge-success">Active</span>
+                                    </span></br>
+                                    <span><strong>Registration Last Date:</strong> {{ tournament.last_registration_date }}</span>
+                                                <span class="badge badge-danger">Completed</span></span></br>
+                                    <span><strong>Allowed Registrations:</strong> {{ tournament.total_allowed_registration }}</span></br>
+                                    <span><strong>Venue:</strong> {{ tournament.venue }}</span></br>
+                                    <span><strong>Address:</strong> {{ tournament.address }}</span></br>
+                                    <span><strong>More Details:</strong> {{ tournament.description | safe }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!--                <div class="float-right">-->
+                <!--                    <div class="col-lg-3 col-sm-2">-->
+                <!--                        <div class="membership-image" style="height: 40rem">-->
+                <!--                            <img src="{% static 'images/information.png' %}" alt="" />-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="blog-pagination">
+        <ul>
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            <li>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

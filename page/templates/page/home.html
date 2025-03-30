@@ -5,7 +5,7 @@
 {% if page.page_banner %}
 <img src="{{ page.page_banner.url }}" alt="">
 {% else %}
-<img src="{% static 'images/mbc-cover-page.jpg' %}" style="height:50rem"  alt="">
+<img src="{% static 'images/mbc-cover-page1.jpg' %}" style="height:30rem"  alt="">
 {% endif %}
 {% endblock %}
 
@@ -15,6 +15,24 @@
         <div class="d-flex justify-content-start">
             <div class="float-left">
                 <div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="home-text-block">
+                        <h3>{{ tournament.name }}</h3>
+                        <div>
+                            <span><strong>Title:</strong> {{ tournament.title }}</span></br>
+                            <span><strong>Tournament Date/Time:</strong> {{ tournament.tournament_date_time }}
+                                           <span class="badge badge-success">Active</span>
+                                </span></br>
+                            <span><strong>Registration Last Date:</strong> {{ tournament.last_registration_date }}</span>
+                            <span class="badge badge-danger">Completed</span></span></br>
+                            <span><strong>Allowed Registrations:</strong> {{ tournament.total_allowed_registration }}</span></br>
+                            <span><strong>Venue:</strong> {{ tournament.venue }}</span></br>
+                            <span><strong>Address:</strong> {{ tournament.address }}</span></br>
+                            <span><strong>More Details:</strong> {{ tournament.description | safe }}</span>
+                        </div>
+                        </div>
+                    </div>
+                    <hr/>
                     {% for p in page %}
                     <div class="col-lg-12 col-sm-12">
                         <div class="home-text-block">

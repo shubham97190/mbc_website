@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.meta_title|default:'Milton Badminton Club' }}</title>
+    <title>{{ page.meta_title|default:'Milton Master Club' }}</title>
     <meta name="description" content="{{ page.meta_description }}">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -16,9 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
-    
-    
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Specific CSS goes HERE -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
@@ -36,7 +34,6 @@
             {% comment %}
             <div class="icon-play"> <a href="{% url 'home' %}"><img src="{% static 'images/icon-play.png' %}" width="140" alt=""></a></div>    
             {% endcomment %}
-                
             
         </div>
         <div class="header-menu">
@@ -53,38 +50,23 @@
                                 {% url 'home' as home_url %}
                                 <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Home</a>
                             </li>
-<!--                            <li class="nav-item">-->
-<!--                                {% url 'membership' as membership_url %}-->
-<!--                                <a class="nav-link {% if request.path == membership_url %}active{% endif %}" href="{{ membership_url }}">Membership</a>-->
-<!--                            </li>-->
                             <li class="nav-item">
-                                {% url 'location' as location_url %}
-                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Location & Schedule</a>
+                                {% url 'fixtures' as fixtures_url %}
+                                <a class="nav-link {% if request.path == fixtures_url %}active{% endif %}" href="{{ fixtures_url }}">Fixtures</a>
                             </li>
-<!--                            <li class="nav-item">-->
-<!--                                {% url 'blog' as blog_url %}-->
-<!--                                <a class="nav-link {% if request.path == blog_url %}active{% endif %}" href="{{ blog_url }}">Latest Information</a>-->
-<!--                            </li>-->
                             <li class="nav-item">
                                 {% url 'rules' as rules_url %}
                                 <a class="nav-link {% if request.path == rules_url %}active{% endif %}" href="{{ rules_url }}">Rules</a>
                             </li>
                             <li class="nav-item">
+                                {% url 'tournament-list' as location_url %}
+                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Tournaments</a>
+                            </li>
+
+                            <li class="nav-item">
                                 {% url 'registration' as registration_url %}
                                 <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">Registration</a>
                             </li>
-<!--                            <li class="nav-item">-->
-<!--                                {% url 'enterprise' as enterprise_url %}-->
-<!--                                <a class="nav-link dropdown-toggle {% if request.path == enterprise_url %}active{% endif %}" href="{{ enterprise_url }}" id="dropdown10">Roasters</a>-->
-<!--                                <div class="dropdown-menu" aria-labelledby="dropdown10">-->
-<!--                                    <div class="dropdown-inner">-->
-<!--                                    {% url 'enterprise-sub-page' 'smart' as smart_url %}-->
-<!--                                    <a class="dropdown-item {% if request.path == smart_url %}active{% endif %}" href="{{ smart_url }}">Summer</a>-->
-<!--                                    {% url 'enterprise-sub-page' 'on-the-move' as on_the_move_url %}-->
-<!--                                    <a class="dropdown-item {% if request.path == on_the_move_url %}active{% endif %}" href="{{ on_the_move_url }}">Winter</a>-->
-<!--                                     </div>-->
-<!--                                </div>-->
-<!--                            </li>-->
                             <li class="nav-item">
                                 {% url 'contact' as contact_url %}
                                 <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="{{ contact_url }}">Contact</a>

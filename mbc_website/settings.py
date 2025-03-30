@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'location',
     'rules',
     'members',
-    'tournament'
+    'tournament',
+    'fixtures'
 ]
 
 MIDDLEWARE = [
@@ -107,9 +108,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mbc_website_db',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'Look4word4u',
         'HOST': 'localhost',
-        'PORT': '3307',
+        'PORT': '3306',
         'OPTIONS': {
             # "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
         }

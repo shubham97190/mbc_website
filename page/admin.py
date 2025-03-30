@@ -1,6 +1,8 @@
 from django.contrib import admin
 from djboomin.widgets import RichTextEditorWidget
 from solo.admin import SingletonModelAdmin
+
+from fixtures.models import Fixtures
 from location.models import Location
 from rules.models import Rules
 
@@ -54,10 +56,15 @@ class LocationAdmin(admin.ModelAdmin):
 
 @admin.register(HomePageCarousel)
 class HomePageCarouselAdmin(admin.ModelAdmin):
-    list_display = ["title", "image", "is_visible", "added_date"]
+    list_display = ["title", "image", "is_visible", "updated_date", "added_date"]
     formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}
 
 
 @admin.register(Rules)
+class RulesAdmin(admin.ModelAdmin):
+    formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}
+
+
+@admin.register(Fixtures)
 class RulesAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {'widget': RichTextEditorWidget}}

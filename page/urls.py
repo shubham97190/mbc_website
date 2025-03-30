@@ -19,9 +19,9 @@ urlpatterns = [
     path('membership/', MembershipPageView.as_view(), name='membership'),
     path('location/', LocationPageView.as_view(), name='location'),
     path('rules/', RulesPageView.as_view(), name='rules'),
+    path('fixtures/', FixturesPageView.as_view(), name='fixtures'),
     path('sitemap/', SitemapPageView.as_view(), name='sitemap'),
     path('<slug:slug>/', GenericPageView.as_view(), name='page'),
-
 ]
 
 if settings.DEBUG:

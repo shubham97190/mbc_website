@@ -95,6 +95,7 @@ class HomePageCarousel(models.Model):
     image = models.ImageField(upload_to="homepage", blank=False)
     title = models.CharField(max_length=200, blank=False)
     added_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now_add=True)
     is_visible = models.BooleanField(default=True)
 
     def __str__(self):

@@ -5,18 +5,17 @@
     {% if page.page_banner %}
         <img src="{{ page.page_banner.url }}" alt="">
     {% else %}
-        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
+        <img src="{% static 'images/mbc-cover-page1.jpg' %}" style="height:30rem"  alt="">
     {% endif %}
 {% endblock %}
 
 {% block content %}
-
-<div class="contact-section">
+<div class="enterprise-content">
     <div class="container">
+        <h3>Registration</h3>
         <div class="row">
-            <div class="col-lg-8 col-sm-5">
+            <div class="col-lg-6 col-sm-5">
                 <div class="enterprise-text">
-                    <h3>{{ page.title }}</h3>
                     <form id="enquiry-form" method="POST" action="">
                         {% if form.errors %}
                             <div class="alert alert-danger alert-dismissible">
@@ -43,8 +42,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group form-check">
-                                    <!-- {{ form.category.label_tag }} -->
+                                <div class="form-group">
+                                     {{ form.category.label_tag }}
                                     {{ form.category }}
                                 </div>
                             </div>
@@ -111,32 +110,35 @@
                         </div>
                     
                         <div class="form-group form-check">
-                            {{ form.is_subscribe_for_email }}
-                            {{ form.is_subscribe_for_email.label_tag }}
+                            {{ form.terms_confirmed }}
+                            {{ form.terms_confirmed.label_tag }}
+                            <a href="javascript:void(0)" onclick="fetchTnc()" data-toggle="modal" data-target="#tournament_term_condition">
+                                Click to review terms & conditions
+                            </a>
                         </div>
-                        
-                        
+
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-lg-8">
-                                    
-                                    {{form.captcha}}
-                                </div>
+<!--                                <div class="col-lg-8">-->
+<!--                                    -->
+<!--                                    {{form.captcha}}-->
+<!--                                </div>-->
                                 <div class="col-lg-4">
                                     <button type="submit" class="btn btn-block btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
-                        
                     </form>
-                    
                 </div>
             </div>
-            <div class="col-lg-2 col-sm-5">
-                <div class="contact-thumb">
-                    <img src="{% static 'images/contact-us.jpeg' %}" alt="" />
+            <div class="col-lg-5 col-sm-5" style="margin-top:2rem">
+                <div id="tournament_details">
                 </div>
             </div>
+            <div id="tournament_term_condition" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            </div>
+            <!-- Modal -->
         </div>
     </div>
 </div>

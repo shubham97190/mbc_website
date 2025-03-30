@@ -9,6 +9,8 @@ from django.views.generic.edit import FormView
 from blog.models import Article
 from enquiry.forms import EnquiryForm
 from faq.models import Question
+from fixtures.models import Fixtures
+from tournament.models import Tournament
 from .models import *
 from location.models import Location
 from rules.models import Rules
@@ -23,8 +25,8 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = Home.objects.all()
-        context["blogs"] = Article.objects.all().order_by("-date")[:3]
-        context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("-added_date")
+        context["tournament"] = Tournament.objects.filter(is_current_active=True, status__in=[0,1]).order_by("tournament_date_time").first()
+        context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("-updated_date")
         return context
 
 
@@ -153,4 +155,13 @@ class RulesPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["rules"] = Rules.objects.all()
+        return context
+
+
+class FixturesPageView(TemplateView):
+    template_name = "page/fixtures.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["fixtures"] = Fixtures.objects.all()
         return context
