@@ -14,7 +14,13 @@ function fetchDetails($event){
 function fetchTnc(){
   var value = $('#id_tournament').find(":selected").val()
   if(value != '' && value != undefined){
-    fetch('tournament_term_condition', '/tournament-tnc/', value)
+    fetch('tournament_term_condition_content', '/tournament-tnc/', value)
+     $('#tournament_term_condition').on('hidden.bs.modal', function (e) {
+          $('#tournament_term_condition_content').html('')
+     })
+  }else{
+    console.log("$('#tournament_term_condition')", $('#tournament_term_condition'))
+    $('#tournament_term_condition').modal('hide')
   }
 }
 

@@ -112,7 +112,7 @@
                         <div class="form-group form-check">
                             {{ form.terms_confirmed }}
                             {{ form.terms_confirmed.label_tag }}
-                            <a href="javascript:void(0)" onclick="fetchTnc()" data-toggle="modal" data-target="#tournament_term_condition">
+                            <a href="#tournament_term_condition" onclick="fetchTnc()" data-toggle="modal" data-target="#tournament_term_condition">
                                 Click to review terms & conditions
                             </a>
                         </div>
@@ -135,10 +135,14 @@
                 <div id="tournament_details">
                 </div>
             </div>
-            <div id="tournament_term_condition" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-            </div>
+
             <!-- Modal -->
+            <div id="tournament_term_condition"  class="modal fade" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                <div id="tournament_term_condition_content"
+                     class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                </div>
+            </div>
         </div>
     </div>
 </div>
