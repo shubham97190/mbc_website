@@ -163,8 +163,32 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-5 col-sm-5" style="margin-top:2rem">
-                <div id="tournament_details">
+            <div class="col-lg-6 col-sm-6" style="margin-top:2rem">
+                {% for i in thumbnails %}
+                    <a href="#" id="tournament_imgs{{forloop.counter}}" onclick="addImagePopup({{forloop.counter}})">
+                        <img id="imageresource{{forloop.counter}}" class="rounded float-left img-thumbnail" width="50%"  src="{{i.image.url}}" >
+                    </a>
+                {% endfor %}
+            </div>
+            <!-- Modal Image -->
+            <!-- Creates the bootstrap modal where the image will appear -->
+            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body">
+                            <img src="" id="imagepreview" >
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

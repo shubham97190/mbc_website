@@ -5,8 +5,13 @@ jQuery(document).ready(function($) {
         var image_height = $('#myTabContent').find(href_id).find('img').parent();
         console.log(image_height.innerHeight(true));
     });
-    updatePhone()
+    updatePhone();
 });
+
+function addImagePopup(count){
+   $('#imagepreview').attr('src', $('#imageresource'+count).attr('src')); // here asign the image to the modal when the user click the enlarge link
+   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+}
 
 function fetchDetails($event){
   var value = $event.value

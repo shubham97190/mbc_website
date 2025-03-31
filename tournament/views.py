@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 
+from page.models import HomePageCarousel
 from tournament.forms import TournamentRegistrationForm
 
 # Create your views here.
@@ -21,6 +22,7 @@ class PlayerView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["tournament_data"] = Tournament.objects.filter(status=0, is_current_active=True).first()
+        context["thumbnails"] = HomePageCarousel.objects.filter(is_visible=True).order_by("updated_date")[9:15]
         return context
 
     def form_valid(self, form):

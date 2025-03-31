@@ -31,7 +31,7 @@ class HomePageView(TemplateView):
                                        queryset=TournamentCategory.objects.filter(is_active=True).order_by('code'),
                                        to_attr='categories'
                                        )).order_by("tournament_date_time").first()
-        context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("-updated_date")
+        context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("updated_date")[:8]
         return context
 
 
