@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+    <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Specific CSS goes HERE -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -52,20 +55,20 @@
                             </li>
                             <li class="nav-item">
                                 {% url 'fixtures' as fixtures_url %}
-                                <a class="nav-link {% if request.path == fixtures_url %}active{% endif %}" href="{{ fixtures_url }}">Fixtures</a>
+                                <a class="nav-link {% if request.path == fixtures_url %}active{% endif %}" href="{{ fixtures_url }}">2025 Tournament Details</a>
                             </li>
-                            <li class="nav-item">
-                                {% url 'rules' as rules_url %}
-                                <a class="nav-link {% if request.path == rules_url %}active{% endif %}" href="{{ rules_url }}">Rules</a>
-                            </li>
-                            <li class="nav-item">
-                                {% url 'tournament-list' as location_url %}
-                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Tournaments</a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                {% url 'rules' as rules_url %}-->
+<!--                                <a class="nav-link {% if request.path == rules_url %}active{% endif %}" href="{{ rules_url }}">Rules</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                {% url 'tournament-list' as location_url %}-->
+<!--                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Tournaments</a>-->
+<!--                            </li>-->
 
                             <li class="nav-item">
                                 {% url 'registration' as registration_url %}
-                                <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">Registration</a>
+                                <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">2025 Registration form</a>
                             </li>
                             <li class="nav-item">
                                 {% url 'contact' as contact_url %}

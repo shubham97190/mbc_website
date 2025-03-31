@@ -23,7 +23,11 @@ class Tournament(models.Model):
     total_allowed_registration = models.PositiveSmallIntegerField(verbose_name="Total Allowed Registration")
     status = models.PositiveIntegerField(choices=STATUS, verbose_name="Select Status")
     description = models.TextField(blank=True, null=True)
+    show_on_home = models.BooleanField(default=False, verbose_name="Show On Home Page?")
+    opt_in = models.TextField(blank=True, null=True)
     term_condition = models.TextField(blank=True, null=True)
+    facility_request = models.TextField(blank=True, null=True)
+    tournament_rules = models.TextField(blank=True, null=True)
     is_current_active = models.BooleanField(default=False, verbose_name="Is Active")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
@@ -36,8 +40,11 @@ class Tournament(models.Model):
 
 class TournamentCategory(models.Model):
     is_active = models.BooleanField(default=False)
+    code = models.CharField(max_length=10)
     name = models.CharField(max_length=100)
     fee = models.PositiveSmallIntegerField(blank=True, verbose_name="Fees")
+    start_date_time = models.DateTimeField()
+    end_date_time = models.DateTimeField()
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_created_by")
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_updated_by")
@@ -66,10 +73,14 @@ class Player(models.Model):
                               verbose_name="Your mobile number (this would be used for WA messaging "
                                            "the tournament details)")
     email = models.CharField(blank=True, max_length=255)
-    comments = models.CharField(blank=True, max_length=500, verbose_name="Any questions/ comments - please add.")
-    unisex_cap_order = models.BooleanField(default=False, verbose_name="Unisex cap - white color/ black print")
-    terms_confirmed = models.BooleanField()
-    is_subscribe_for_email = models.BooleanField(default=True, verbose_name="Subscribes to Updates")
+    comments = models.CharField(blank=True, max_length=500, verbose_name="Any questions/comments - please add.")
+    unisex_cap_order = models.BooleanField(default=False, verbose_name="Unisex cap - White Color/Black print $5/each")
+    terms_confirmed = models.BooleanField(default=False)
+    opt_in = models.BooleanField(default=False, verbose_name="Opt-In: Consent required, If Milton Masters can collect "
+                                                             "and store your team's tournament performance, "
+                                                             "for reporting annual progression.")
+    facility_request = models.BooleanField(default=False)
+    tournament_rules = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="player_created_by")

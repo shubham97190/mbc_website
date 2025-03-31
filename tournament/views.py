@@ -20,9 +20,11 @@ class PlayerView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["tournament_data"] = Tournament.objects.filter(status=0, is_current_active=True).first()
         return context
 
     def form_valid(self, form):
+        print(form)
         registration = form.save(commit=False)
         registration.created_by_id = 1
         registration.updated_by_id = 1
@@ -40,7 +42,6 @@ class PlayerView(FormView):
 
         # msg.send()
         registration.save()
-
         registration.category.set(self.request.POST.getlist('category'))
         return super().form_valid(form)
 

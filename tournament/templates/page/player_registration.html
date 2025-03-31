@@ -8,15 +8,14 @@
         <img src="{% static 'images/mbc-cover-page1.jpg' %}" style="height:30rem"  alt="">
     {% endif %}
 {% endblock %}
-
 {% block content %}
 <div class="enterprise-content">
     <div class="container">
-        <h3>Registration</h3>
+        <h4>Registration - Please complete the form for each category separately.</h4>
         <div class="row">
             <div class="col-lg-6 col-sm-5">
                 <div class="enterprise-text">
-                    <form id="enquiry-form" method="POST" action="">
+                    <form  method="POST" action="">
                         {% if form.errors %}
                             <div class="alert alert-danger alert-dismissible">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -27,7 +26,7 @@
                             <div class="alert alert-success alert-dismissible">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                 {% for message in messages %}
-                                    <h2>{{message}}</h2>
+                                    <h5>{{message}}</h5>
                                 {% endfor %}
                             </div>
                         {% endif %}
@@ -37,13 +36,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {{ form.tournament.label_tag }}
                                     {{ form.tournament }}
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                     {{ form.category.label_tag }}
+                                    {{ form.category.label_tag }}
                                     {{ form.category }}
                                 </div>
                             </div>
@@ -78,12 +76,13 @@
                                 </div>
                             </div>
                         </div>
-                    
+                        <div class="row">
+                        <div class="col-md-12">
                         <div class="form-group">
                             {{ form.team_name.label_tag }}
                             {{ form.team_name }}
                         </div>
-                    
+                        </div></div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -108,15 +107,48 @@
                             {{ form.unisex_cap_order }}
                             {{ form.unisex_cap_order.label_tag }}
                         </div>
-                    
-                        <div class="form-group form-check">
-                            {{ form.terms_confirmed }}
-                            {{ form.terms_confirmed.label_tag }}
-                            <a href="#tournament_term_condition" onclick="fetchTnc()" data-toggle="modal" data-target="#tournament_term_condition">
-                                Click to review terms & conditions
-                            </a>
-                        </div>
-
+                        {% if tournament_data.opt_in %}
+                            <div class="form-group form-check">
+                                {{ form.opt_in }}
+                                {{ form.opt_in.label_tag }}
+                            </div>
+                        {% endif %}
+                        {% if tournament_data.term_condition %}
+                            <div class="form-group form-check">
+                                {{ form.terms_confirmed }}
+                                {{ form.terms_confirmed.label_tag }}
+                                <a href="#tournament_term_condition" id="tournament_tnc" data-toggle="modal"
+                                    onclick="showData(this.id)"
+                                    data-body="{{ tournament_data.term_condition }}"
+                                    data-title="{{ tournament_data.name }} - Term & Conditions">
+                                    Click to review
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if tournament_data.facility_request %}
+                            <div class="form-group form-check">
+                                {{ form.facility_request }}
+                                {{ form.facility_request.label_tag }}
+                                <a href="#tournament_term_condition" id="tournament_facility"
+                                    onclick="showData(this.id)" data-toggle="modal"
+                                    data-body="{{ tournament_data.facility_request }}"
+                                    data-title="{{ tournament_data.name }} - Facility Request">
+                                    Click to review
+                                </a>
+                            </div>
+                        {% endif %}
+                        {% if tournament_data.tournament_rules %}
+                            <div class="form-group form-check">
+                                {{ form.tournament_rules }}
+                                {{ form.tournament_rules.label_tag }}
+                                <a href="#tournament_term_condition" id="tournament_rules"
+                                    onclick="showData(this.id)" data-toggle="modal"
+                                    data-body="{{ tournament_data.tournament_rules }}"
+                                    data-title="{{ tournament_data.name }} - Tournament Rules">
+                                    Click to review
+                                </a>
+                            </div>
+                        {% endif %}
                         <div class="form-group">
                             <div class="row">
 <!--                                <div class="col-lg-8">-->
@@ -137,10 +169,24 @@
             </div>
 
             <!-- Modal -->
-            <div  name="tournament_term_condition" style="display: none;"  class="modal fade" tabindex="-1" role="dialog"
+            <div id="tournament_term_condition" style="display: none;"  class="modal fade" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                 <div id="tournament_term_condition_content"
                      class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tnc_title">{{ tournament.name }} - Terms & Conditions</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="tnc_body">
+                            {{ tournament.term_condition | safe }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
+from django.db.models import Prefetch
 from django.template.loader import get_template
 from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import DetailView
@@ -10,7 +11,7 @@ from blog.models import Article
 from enquiry.forms import EnquiryForm
 from faq.models import Question
 from fixtures.models import Fixtures
-from tournament.models import Tournament
+from tournament.models import Tournament, TournamentCategory
 from .models import *
 from location.models import Location
 from rules.models import Rules
@@ -25,7 +26,11 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = Home.objects.all()
-        context["tournament"] = Tournament.objects.filter(is_current_active=True, status__in=[0,1]).order_by("tournament_date_time").first()
+        context["tournament"] = Tournament.objects.filter(show_on_home=True) \
+            .prefetch_related(Prefetch('tournamentcategory_set',
+                                       queryset=TournamentCategory.objects.filter(is_active=True).order_by('code'),
+                                       to_attr='categories'
+                                       )).order_by("tournament_date_time").first()
         context["cimages"] = HomePageCarousel.objects.filter(is_visible=True).order_by("-updated_date")
         return context
 
@@ -164,4 +169,9 @@ class FixturesPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["fixtures"] = Fixtures.objects.all()
+        context["tournament"] = Tournament.objects.filter(show_on_home=True) \
+            .prefetch_related(Prefetch('tournamentcategory_set',
+                                       queryset=TournamentCategory.objects.filter(is_active=True).order_by('code'),
+                                       to_attr='categories'
+                                       )).order_by("tournament_date_time").first()
         return context

@@ -2,7 +2,7 @@ from django import forms
 from django_select2.forms import Select2MultipleWidget
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
-
+from phonenumber_field.widgets import RegionalPhoneNumberWidget
 from .models import Player, Tournament
 
 
@@ -11,7 +11,9 @@ class TournamentRegistrationForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TournamentRegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['tournament'].queryset = Tournament.objects.filter(status=0, is_current_active=True)
+        t: Tournament = Tournament.objects.filter(status=0, is_current_active=True)
+        self.fields['tournament'].queryset = t
+        self.fields['tournament'].initial = t.first().pk
 
     class Meta:
         model = Player
@@ -27,14 +29,18 @@ class TournamentRegistrationForm(forms.ModelForm):
             'email',
             'comments',
             'unisex_cap_order',
+            'opt_in',
             'terms_confirmed',
+            'facility_request',
+            'tournament_rules'
             # 'captcha',
         ]
 
         widgets = {
-            'tournament': forms.Select(
-                attrs={'id': 'id_tournament', 'class': 'form-control input-md', 'onChange': 'fetchDetails(this)'}),
-            'category': Select2MultipleWidget(attrs={'id': 'id_category', 'class': 'form-control input-md'}),
+            'tournament': forms.TextInput(
+                attrs={'id': 'id_tournament', 'class': 'form-control input-md', 'onChange': 'fetchDetails(this)',
+                       'type': 'hidden'}),
+            'category': forms.CheckboxSelectMultiple(attrs={'id': 'id_category'}),
             'name': forms.TextInput(
                 attrs={'id': 'id_name', 'class': 'form-control input-md', 'placeholder': 'Your Name'}),
             'certificate_name': forms.TextInput(attrs={'id': 'id_certificate_name', 'class': 'form-control input-md',
@@ -47,13 +53,17 @@ class TournamentRegistrationForm(forms.ModelForm):
                        'placeholder': 'Partner Name on Certificate (Leave empty if same as above)'}),
             'team_name': forms.TextInput(attrs={'id': 'id_team_name', 'class': 'form-control input-md',
                                                 'placeholder': 'Team Name (add NA if not sure)'}),
-            'mobile': forms.TextInput(
-                attrs={'id': 'id_mobile', 'class': 'form-control input-md', 'placeholder': 'Your Mobile Number'}),
+            'mobile': RegionalPhoneNumberWidget(region="CA", attrs={'id': 'id_mobile', 'class': 'form-control input-md',
+                                                                    'placeholder': 'Mobile Number',
+                                                                    'onBlur': 'formatMobile()'}),
             'email': forms.EmailInput(
                 attrs={'id': 'id_email', 'class': 'form-control input-md', 'placeholder': 'Email'}),
             'comments': forms.Textarea(
-                attrs={'id': 'id_comments', 'class': 'form-control', 'placeholder': 'Any Questions/Comments'}),
+                attrs={'id': 'id_comments', 'class': 'form-control', 'placeholder': 'Any Questions/Comments',
+                       'rows': 3, 'cols': 5}),
             'unisex_cap_order': forms.CheckboxInput(attrs={'id': 'id_unisex_cap_order', 'class': 'form-check-input'}),
-            'terms_confirmed': forms.CheckboxInput(
-                attrs={'id': 'id_terms_confirmed', 'class': 'form-check-input'}),
+            'opt_in': forms.CheckboxInput(attrs={'id': 'id_opt_in', 'class': 'form-check-input'}),
+            'terms_confirmed': forms.CheckboxInput(attrs={'id': 'id_terms_confirmed', 'class': 'form-check-input'}),
+            'facility_request': forms.CheckboxInput(attrs={'id': 'id_facility_request', 'class': 'form-check-input'}),
+            'tournament_rules': forms.CheckboxInput(attrs={'id': 'id_tournament_rules', 'class': 'form-check-input'})
         }
