@@ -40,9 +40,10 @@ class TournamentRegistrationForm(forms.ModelForm):
             'tournament': forms.TextInput(
                 attrs={'id': 'id_tournament', 'class': 'form-control input-md', 'onChange': 'fetchDetails(this)',
                        'type': 'hidden'}),
-            'category': forms.CheckboxSelectMultiple(attrs={'id': 'id_category'}),
+            'category': forms.RadioSelect(attrs={'id': 'id_category'}),
             'name': forms.TextInput(
-                attrs={'id': 'id_name', 'class': 'form-control input-md', 'placeholder': 'Your Name'}),
+                attrs={'id': 'id_name', 'class': 'form-control input-md', 'placeholder': 'Your Name',
+                       'onBlur': 'populateTeam(this.value)'}),
             'certificate_name': forms.TextInput(attrs={'id': 'id_certificate_name', 'class': 'form-control input-md',
                                                        'placeholder': 'Name on Certificate (Leave empty if same as '
                                                                       'above)'}),
