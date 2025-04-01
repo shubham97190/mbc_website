@@ -50,37 +50,37 @@ class TournamentCategory(models.Model):
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_updated_by")
 
     def __str__(self):
-        return f"{self.name} - ${self.fee}"
+        return f"{self.name} - ${self.fee}/team"
 
 
 class Player(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    category = models.ManyToManyField(TournamentCategory)
+    category = models.ForeignKey(TournamentCategory, on_delete=models.CASCADE)
 
     name = models.CharField(max_length=255, verbose_name="Your Name")
     certificate_name = models.CharField(blank=True, max_length=255,
                                         verbose_name="Your Name on Certificate? Please leave empty "
-                                                     "if Same as above")
+                                                     "if same as above")
     partner_name = models.CharField(max_length=255, verbose_name="Your partner name? If not confirmed please add NA")
     certificate_partner_name = models.CharField(blank=True, max_length=255, verbose_name="Your partner name on "
                                                                                          "Certificate? If not "
                                                                                          "confirmed please add NA or "
                                                                                          "leave empty "
-                                                                                         "if Same as above")
+                                                                                         "if same as above")
 
     team_name = models.CharField(blank=True, max_length=255, verbose_name="Team Name? If not sure please add NA")
-    mobile = PhoneNumberField(blank=True, region="CA",
+    mobile = PhoneNumberField(region="CA",
                               verbose_name="Your mobile number (this would be used for WA messaging "
                                            "the tournament details)")
-    email = models.CharField(blank=True, max_length=255)
+    email = models.CharField(max_length=255)
     comments = models.CharField(blank=True, max_length=500, verbose_name="Any questions/comments - please add.")
     unisex_cap_order = models.BooleanField(default=False, verbose_name="Unisex cap - White Color/Black print $5/each")
-    terms_confirmed = models.BooleanField(default=False)
+    terms_confirmed = models.BooleanField(blank=False, default=False, verbose_name="Terms & Conditions Acknowledged")
     opt_in = models.BooleanField(default=False, verbose_name="Opt-In: Consent required, If Milton Masters can collect "
                                                              "and store your team's tournament performance, "
                                                              "for reporting annual progression.")
-    facility_request = models.BooleanField(default=False)
-    tournament_rules = models.BooleanField(default=False)
+    facility_request = models.BooleanField(default=False, verbose_name="Facility Request Acknowledged")
+    tournament_rules = models.BooleanField(default=False, verbose_name="Tournament Rules Acknowledged")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="player_created_by")

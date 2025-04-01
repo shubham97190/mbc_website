@@ -202,3 +202,6 @@ label{font-weight: 900;}
 .blog-share .social-icons ul li a{color:#73859D}
 
 .card-header-title-custom {background-color:#189ADD !important; color: white}
+.normal {
+    text-transform: none;
+}

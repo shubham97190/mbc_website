@@ -17,17 +17,18 @@
                 <div>
                     <div class="col-lg-12 col-sm-12">
                         <div class="home-text-block">
-                        <p></p><h2>{{ tournament.name }}</h2></p></br>
-                            <p><h4>{{ tournament.tournament_date_time }}</h4></p></br>
-                            <p><h4>{{ tournament.venue | safe}}</h4></p></br>
+                            <h1 style="font-weight:800; font-size:80px">{{ tournament.name }}</h1>
+                            <h2 style="font-weight:800; font-size:50px">{{ tournament.title }}</h2></br>
+                            <h4 style="font-weight:800;">{{ tournament.tournament_date_time }}</h4></br>
+                            <h3 style="font-weight:800;">{{ tournament.venue | safe}}</h3>
                             <p><h4>{{ tournament.address }}</h4></p></br>
                             <div>
-                                <p><h4><strong>Categories:</strong>
+                                <h4><strong>Doubles Categories:</strong>
                                 {% for field in tournament.categories %}
                                     {{ field.code }}{% if not forloop.last %}, {% endif %}
                                 {% endfor %}
                             </h4></p></br>
-                            <p><h4><strong>For Registration:</strong> {{ tournament.description | safe }}</h4></p></br>
+                            <h4>{{ tournament.description | safe }}</h4>
                         </div>
                         </div>
                     </div>
@@ -51,6 +52,7 @@
                 </div>
             </div>
             <div class="float-right">
+                </br>
                 <div>
                     <div class="col-lg-12 col-sm-8">
                         <div class="home-text-block">

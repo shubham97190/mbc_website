@@ -8,6 +8,9 @@ from .models import Player, Tournament
 
 class TournamentRegistrationForm(forms.ModelForm):
     # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
+    terms_confirmed = forms.BooleanField(required=True)
+    facility_request = forms.BooleanField(required=True)
+    tournament_rules = forms.BooleanField(required=True)
 
     def __init__(self, *args, **kwargs):
         super(TournamentRegistrationForm, self).__init__(*args, **kwargs)

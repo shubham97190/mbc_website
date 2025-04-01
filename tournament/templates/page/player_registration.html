@@ -11,7 +11,7 @@
 {% block content %}
 <div class="enterprise-content">
     <div class="container">
-        <h4>Registration - Please complete the form for each category separately.</h4>
+        <h4>Registration - <span class="normal">please complete separately for each category competing in</span></h4>
         <div class="row">
             <div class="col-lg-6 col-sm-5">
                 <div class="enterprise-text">
@@ -114,7 +114,7 @@
                             </div>
                         {% endif %}
                         {% if tournament_data.term_condition %}
-                            <div class="form-group form-check">
+                            <div class="form-group">
                                 {{ form.terms_confirmed }}
                                 {{ form.terms_confirmed.label_tag }}
                                 <a href="#tournament_term_condition" id="tournament_tnc" data-toggle="modal"
@@ -126,7 +126,7 @@
                             </div>
                         {% endif %}
                         {% if tournament_data.facility_request %}
-                            <div class="form-group form-check">
+                            <div class="form-group">
                                 {{ form.facility_request }}
                                 {{ form.facility_request.label_tag }}
                                 <a href="#tournament_term_condition" id="tournament_facility"
@@ -138,7 +138,7 @@
                             </div>
                         {% endif %}
                         {% if tournament_data.tournament_rules %}
-                            <div class="form-group form-check">
+                            <div class="form-group">
                                 {{ form.tournament_rules }}
                                 {{ form.tournament_rules.label_tag }}
                                 <a href="#tournament_term_condition" id="tournament_rules"

@@ -31,12 +31,12 @@ class TournamentPageAdmin(admin.ModelAdmin):
 
 @admin.register(Player)
 class MemberPageAdmin(admin.ModelAdmin):
-    search_fields = ['name', 'partner_name', 'certificate_name', 'certificate_partner_name']
+    search_fields = ['name', 'partner_name', 'certificate_name', 'certificate_partner_name','mobile','email']
     list_display = [
         "tournament",
+        "category",
         "name",
         "partner_name",
-        "unisex_cap_order",
         "updated_by",
         "updated_date"
     ]

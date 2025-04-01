@@ -44,7 +44,6 @@ class PlayerView(FormView):
 
         # msg.send()
         registration.save()
-        registration.category.set(self.request.POST.getlist('category'))
         return super().form_valid(form)
 
     def form_invalid(self, form):
