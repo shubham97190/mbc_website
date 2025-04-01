@@ -79,8 +79,8 @@ class Player(models.Model):
     opt_in = models.BooleanField(default=False, verbose_name="Opt-In: Consent required, If Milton Masters can collect "
                                                              "and store your team's tournament performance, "
                                                              "for reporting annual progression.")
-    facility_request = models.BooleanField()
-    tournament_rules = models.BooleanField()
+    facility_request = models.BooleanField(default=False)
+    tournament_rules = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="player_created_by")
