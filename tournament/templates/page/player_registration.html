@@ -11,9 +11,14 @@
 {% block content %}
 <div class="enterprise-content">
     <div class="container">
-        <h4>Registration - <span class="normal">please complete separately for each category competing in</span></h4>
         <div class="row">
             <div class="col-lg-6 col-sm-5">
+                {%  if not is_registration_open %}
+                <div style="text-align:center; margin-top:10rem;">
+                <h1 class="normal" style="font-weight:600; font-size:40px;">There is no current active tournament available for registration. Please check back later.</h1>
+                </div>
+                {% else %}
+                <h3 style="font-weight:600">Registration - <span class="normal">please complete separately for each category competing in</span></h3>
                 <div class="enterprise-text">
                     <form  method="POST" action="">
                         {% if form.errors %}
@@ -162,6 +167,7 @@
                         </div>
                     </form>
                 </div>
+                {% endif %}
             </div>
             <div class="col-lg-6 col-sm-6" style="margin-top:2rem">
                 {% for i in thumbnails %}

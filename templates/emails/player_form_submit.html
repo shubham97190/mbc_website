@@ -1,0 +1,19 @@
+{% extends 'emails/base.html' %}
+
+{% block content %}
+<p>The following message was sent from the  form on the Milton Masters Badminton website.</p>
+<p><strong>Tournament:</strong> {{ player.tournament }} </p>
+<p><strong>Category:</strong> {{ player.category.first }}</p>
+<p><strong>Your Name:</strong> {{ player.name }} </p>
+<p><strong>Your Name on Certificate? Please leave empty if same as above:</strong> {{ player.certificate_name }} </p>
+<p><strong>Your partner name? If not confirmed please add NA:</strong> {{ player.partner_name }} </p>
+<p><strong>Your partner name on Certificate? If not confirmed please add NA or leave empty if same as above:</strong> {{ player.certificate_partner_name }} </p>
+<p><strong>Team Name? If not sure please add NA:</strong> {{ player.team_name }} </p>
+<p><strong>Your mobile number (this would be used for WA messaging the tournament details):</strong> {{ player.mobile }} </p>
+<p><strong>Any questions/comments - please add:</strong> {{ player.comments }}</p>
+<p><strong>Unisex cap - White Color/Black print $5/each:</strong>{{ player.unisex_cap_order }}</p>
+<p><strong>Opt-In: Consent required, If Milton Masters can collect and store your team's tournament performance, for reporting annual progression:</strong>{{ player.opt_in }}</p>
+<p><strong>Terms confirmed:</strong>{{ player.terms_confirmed }}</p>
+<p><strong>Facility request:</strong>{{ player.facility_request }}</p>
+<p><strong>Tournament rules:</strong>{{ player.tournament_rules }}</p>
+{% endblock %}

@@ -31,23 +31,32 @@ class TournamentPageAdmin(admin.ModelAdmin):
 
 @admin.register(Player)
 class MemberPageAdmin(admin.ModelAdmin):
-    search_fields = ['name', 'partner_name', 'certificate_name', 'certificate_partner_name','mobile','email']
+    search_fields = ['name', 'partner_name', 'certificate_name', 'certificate_partner_name', 'mobile', 'email']
     list_display = [
         "tournament",
-        "category",
+        "get_category_name",
         "name",
-        "partner_name",
+        "get_partner_name",
         "updated_by",
         "updated_date"
     ]
     readonly_fields = ('created_by', 'updated_by')
     formfield_overrides = {"mobile": {"widget": PhoneNumberPrefixWidget}}
+    list_filter = ["tournament", "category"]
 
     def save_model(self, request, obj: Player, form, change):
         if not change:
             obj.created_by = request.user
         obj.updated_by = request.user
         return super().save_model(request, obj, form, change)
+
+    @admin.display(description="Category Name", ordering="get_category_name")
+    def get_category_name(self, obj):
+        return obj.category.first()
+
+    @admin.display(description="Partner Name", ordering="get_partner_name")
+    def get_partner_name(self, obj):
+        return obj.partner_name
 
 
 @admin.register(TournamentCategory)

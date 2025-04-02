@@ -163,14 +163,23 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
-EMAIL_HOST = 'mail.24livehost.com'
-EMAIL_HOST_USER = 'ds25@24livehost.com'
-EMAIL_HOST_PASSWORD = 'Dsmtp@909#'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_HOST = 'mail.24livehost.com'
+# EMAIL_HOST_USER = 'ds25@24livehost.com'
+# EMAIL_HOST_PASSWORD = 'Dsmtp@909#'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# TO_EMAIL = 'harish.kumar@dotsquares.com'
+# FROM_EMAIL = 'harish.kumar@dotsquares.com'
 
-TO_EMAIL = 'harish.kumar@dotsquares.com'
-FROM_EMAIL = 'harish.kumar@dotsquares.com'
+# -------------------------------------------------- SMTP --------------------------------------------------
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'projectbasics01@gmail.com'
+EMAIL_HOST_PASSWORD = 'wtfurylqaucdbpey '
+EMAIL_USE_TLS = True
+FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_HOST_USER}>"
+DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_HOST_USER}>"
 
 RECAPTCHA_PUBLIC_KEY = '6Lfl6RcaAAAAAGrG946PcoD7YigQlUjgcK9cscRO'
 RECAPTCHA_PRIVATE_KEY = '6Lfl6RcaAAAAAG9YgPWcr9nRDlrZx-7KAiacU8W7'

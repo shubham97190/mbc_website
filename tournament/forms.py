@@ -3,7 +3,7 @@ from django_select2.forms import Select2MultipleWidget
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from phonenumber_field.widgets import RegionalPhoneNumberWidget
-from .models import Player, Tournament
+from .models import Player, Tournament, TournamentCategory
 
 
 class TournamentRegistrationForm(forms.ModelForm):
@@ -11,12 +11,16 @@ class TournamentRegistrationForm(forms.ModelForm):
     terms_confirmed = forms.BooleanField(required=True)
     facility_request = forms.BooleanField(required=True)
     tournament_rules = forms.BooleanField(required=True)
+    category = forms.ModelChoiceField(
+        queryset=TournamentCategory.objects.filter(is_active=True),
+        widget=forms.RadioSelect(attrs={'id': 'id_category'})
+    )
 
     def __init__(self, *args, **kwargs):
         super(TournamentRegistrationForm, self).__init__(*args, **kwargs)
         t: Tournament = Tournament.objects.filter(status=0, is_current_active=True)
         self.fields['tournament'].queryset = t
-        self.fields['tournament'].initial = t.first().pk
+        self.fields['tournament'].initial = t and t.first().pk
 
     class Meta:
         model = Player

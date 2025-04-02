@@ -43,6 +43,7 @@ class TournamentCategory(models.Model):
     code = models.CharField(max_length=10)
     name = models.CharField(max_length=100)
     fee = models.PositiveSmallIntegerField(blank=True, verbose_name="Fees")
+    total_allowed_registration = models.PositiveSmallIntegerField(verbose_name="Total Allowed Registration")
     start_date_time = models.DateTimeField()
     end_date_time = models.DateTimeField()
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
@@ -55,8 +56,8 @@ class TournamentCategory(models.Model):
 
 class Player(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    category = models.ForeignKey(TournamentCategory, on_delete=models.CASCADE)
-
+    category = models.ManyToManyField(TournamentCategory)
+    is_active = models.BooleanField(default=True, verbose_name="Is Active?")
     name = models.CharField(max_length=255, verbose_name="Your Name")
     certificate_name = models.CharField(blank=True, max_length=255,
                                         verbose_name="Your Name on Certificate? Please leave empty "
