@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <title>mbc_website.com</title>
+        <title>Milton Masters Badminton</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
         <style type="text/css">
@@ -27,6 +27,14 @@
             .social img {
                 display: inline;
             }
+            .icon-tick {
+                color: green;
+                font-size:20px;
+            }
+            .icon-cross{
+                color: red;
+                font-size:25px;
+            }
         </style>
     </head>
     <body>
@@ -37,11 +45,13 @@
             <tr>
                 <td></td>
                 <td valign="top" align="center">
-                    <table border="0" cellpadding="0" cellspacing="0" align="center" width="600">
                     <table style="width: 600px; text-align: center;" cellspacing="0" cellpadding="0" border="0">
                         <tr>
-                            <td style="background: #516A86; /*border-bottom: 1px solid #e1e1e1;*/ padding: 20px; text-align:center;">
-                                <img src="{% static 'images/logo-skignz.png' %}?v=5" width="440" style="display:inline;"/>
+                            <td style="background: #516A86; text-align:left;">
+                                <div style="display: flex;">
+                                    <img src="cid:logo"/>
+                                    <span style="font-size:x-large; color: white; margin-top: 85px;">Milton Masters Badminton</span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -50,8 +60,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="background: #F8F9FA; padding: 30px 50px 30px 50px; color: #636363;">
-                                <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">&copy; {% now "Y" %} <a href="{% url 'home' %}" style="color: #516A86;">mbc_website.com</a> All Rights Reserved</p>
+                            <td style="background: #516A86; color: white;">
+                                <p style="margin: 0;font-size: 14px; line-height: 35px; text-align: center">&copy; {% now "Y" %}
+                                    <a href="https://miltonmastersbadminton.ca" style="color: white;">miltonmastersbadminton.ca</a> All Rights Reserved</p>
                             </td>
                         </tr>
                     </table>

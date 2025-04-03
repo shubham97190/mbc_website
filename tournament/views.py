@@ -1,13 +1,17 @@
+import os
+from email.mime.image import MIMEImage
+
 from django.utils.timezone import now
 from django.views.generic import ListView
 
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import get_template
 from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 
+from mbc_website.settings import BASE_DIR
 from page.models import HomePageCarousel
 from tournament.forms import TournamentRegistrationForm
 
@@ -17,12 +21,20 @@ from tournament.models import Tournament, Player
 
 def send_email(registration):
     body = get_template("emails/player_form_submit.html").render({"player": registration})
-    msg = EmailMessage(
+    print(body)
+    msg = EmailMultiAlternatives(
         "Milton Masters Badminton - Registration Form completed",
         body,
         settings.FROM_EMAIL,
         [registration.email],
     )
+    for f in [f'{BASE_DIR}/static/admin/images/logo-email.png']:
+        fp = open(os.path.join(os.path.dirname(__file__), f), 'rb')
+        msg_img = MIMEImage(fp.read())
+        fp.close()
+        msg_img.add_header('Content-ID', '<logo>')
+        msg_img.add_header("Content-Disposition", "inline", filename="logo")
+        msg.attach(msg_img)
     msg.content_subtype = "html"
     msg.send()
 
@@ -42,7 +54,6 @@ class PlayerView(FormView):
         return context
 
     def form_valid(self, form):
-        print(form)
         registration = form.save(commit=False)
         registration.created_by_id = 1
         registration.updated_by_id = 1

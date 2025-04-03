@@ -172,7 +172,8 @@ STATICFILES_DIRS = [
 # FROM_EMAIL = 'harish.kumar@dotsquares.com'
 
 # -------------------------------------------------- SMTP --------------------------------------------------
-
+# file path: backend/email.py
+EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'projectbasics01@gmail.com'
@@ -206,3 +207,4 @@ EXPORT_FORMATS = [CSV]
 # SELECT2_CACHE_BACKEND = "select2"
 SELECT2_USE_BUNDLED_JQUERY  = True
 SELECT2_USE_BUNDLED_SELECT2   = True
+

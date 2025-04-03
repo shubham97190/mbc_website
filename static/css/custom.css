@@ -11,7 +11,7 @@ p{margin-bottom:1rem}
 @media (min-width:1600px){
 .container, .container-lg, .container-md, .container-sm, .container-xl{max-width: 1596px;}
 }
-.site-logo{position:absolute; right:145px;top:45px;z-index:10}
+.site-logo-mmb {right: 86rem; top: -3rem; position: absolute; width:25rem}
 .icon-play{ position: absolute; left: 0;right: 0;top: 0; bottom:0;margin:auto;width:150px;height: 150px;}
 .main-banner{ position: relative;}
 .main-banner:after{content:'';background:url(../images/top-curve.svg) center bottom no-repeat;background-size:100%;position:absolute;bottom:-1px;left:0;right: 0; height: 120px;}

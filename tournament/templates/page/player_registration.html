@@ -20,24 +20,20 @@
                 {% else %}
                 <h3 style="font-weight:600">Registration - <span class="normal">please complete separately for each category competing in</span></h3>
                 <div class="enterprise-text">
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.errors }}
+                    </div>
+                    {% endif %}
+                    {% if messages %}
+                    <div class="alert alert-success">
+                        {% for message in messages %}
+                        <h5>{{message}}</h5>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <form  method="POST" action="">
-                        {% if form.errors %}
-                            <div class="alert alert-danger alert-dismissible">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                {{ form.errors }}
-                            </div>
-                        {% endif %}
-                        {% if messages %}
-                            <div class="alert alert-success alert-dismissible">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                {% for message in messages %}
-                                    <h5>{{message}}</h5>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
                         {% csrf_token %}
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
