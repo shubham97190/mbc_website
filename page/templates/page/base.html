@@ -5,8 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.meta_title|default:'Milton Master Club' }}</title>
+    <title>{{ page.meta_title|default:'Milton Masters Club' }}</title>
     <meta name="description" content="{{ page.meta_description }}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css">
@@ -29,7 +30,7 @@
         <div class="main-banner">
             <div class="site-logo-mmb">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo_white.png' %}" alt="">
+                    <img src="{% static 'images/logo_black.png' %}" alt="">
                 </a>
             </div>
             {% block banner %}{% endblock %}
