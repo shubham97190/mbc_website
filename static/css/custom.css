@@ -1,5 +1,5 @@
 body{margin: 0;padding: 0;font-family: 'Quicksand', sans-serif; color:#424242; font-size:18px; line-height: 1.5;}
-img{max-width:100%}
+img{width:100%}
 h1, h2, h3, h4, h5, h6{font-weight:500; text-transform: capitalize; margin-bottom:1rem;}
 h2{font-size:32px; margin-bottom:1rem;}
 a:focus, button:focus{text-decoration: none;}
@@ -11,9 +11,9 @@ p{margin-bottom:1rem}
 @media (min-width:1600px){
 .container, .container-lg, .container-md, .container-sm, .container-xl{max-width: 1596px;}
 }
-.site-logo-mmb {right: 87rem; top: 0.5rem; position: absolute; width:18rem}
+.site-logo-mmb {float:left; left:1rem; top: 0.5rem; position: absolute; width:18rem}
 .icon-play{ position: absolute; left: 0;right: 0;top: 0; bottom:0;margin:auto;width:150px;height: 150px;}
-.main-banner{ position: relative;}
+.main-banner{ position:relative;}
 .main-banner:after{content:'';background:url(../images/top-curve.svg) center bottom no-repeat;background-size:100%;position:absolute;bottom:-1px;left:0;right: 0; height: 120px;}
 .text-link{text-transform: capitalize;}
 .header-menu {display: block;}

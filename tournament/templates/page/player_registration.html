@@ -5,7 +5,7 @@
     {% if page.page_banner %}
         <img src="{{ page.page_banner.url }}" alt="">
     {% else %}
-        <img src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:45rem"  alt="">
+        <img class="img-responsive" src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:45rem"  alt="">
     {% endif %}
 {% endblock %}
 {% block content %}
