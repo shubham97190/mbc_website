@@ -78,12 +78,13 @@
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col-md-12">
-                        <div class="form-group">
-                            {{ form.team_name.label_tag }}
-                            {{ form.team_name }}
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {{ form.team_name.label_tag }}
+                                    {{ form.team_name }}
+                                </div>
+                            </div>
                         </div>
-                        </div></div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -155,6 +156,10 @@
                                 <div class="col-lg-8">
                                     {{form.captcha}}
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-lg-4">
                                     <button type="submit" class="btn btn-block btn-primary">Submit</button>
                                 </div>
@@ -164,10 +169,10 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="col-lg-6 col-sm-6" style="margin-top:2rem">
+            <div class="col-lg-6 col-sm-2" style="margin-top:2rem;">
                 {% for i in thumbnails %}
                     <a href="#" id="tournament_imgs{{forloop.counter}}" onclick="addImagePopup({{forloop.counter}})">
-                        <img id="imageresource{{forloop.counter}}" class="rounded float-left img-thumbnail" width="50%"  src="{{i.image.url}}" >
+                        <img id="imageresource{{forloop.counter}}" class="rounded img-thumbnail" style="float:left;width:50%" src="{{i.image.url}}" >
                     </a>
                 {% endfor %}
             </div>
