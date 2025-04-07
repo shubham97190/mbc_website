@@ -109,13 +109,13 @@ WSGI_APPLICATION = 'mbc_website.wsgi.application'
 # }
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            "NAME": os.getenv("DB_NAME", default='mmb_website_db'),
-            "USER": os.getenv("DB_USERNAME", default='root'),
-            "PASSWORD": os.getenv("DB_PASSWORD", default='Look4word4u'),
-            "HOST": os.getenv("DB_HOST", default='localhost'),
-            "PORT": os.getenv("DB_PORT", default=3306),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        "NAME": os.getenv("DB_NAME", default='mbc_website_db'),
+        "USER": os.getenv("DB_USERNAME", default='root'),
+        "PASSWORD": os.getenv("DB_PASSWORD", default='Look4word4u'),
+        "HOST": os.getenv("DB_HOST", default='localhost'),
+        "PORT": os.getenv("DB_PORT", default=3306),
     }
 }
 
@@ -167,10 +167,10 @@ STATIC_ROOT = BASE_DIR / "static"
 
 # -------------------------------------------------- SMTP --------------------------------------------------
 # file path: backend/email.py
-#EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.hostinger.com'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'internal@miltonmastersbadminton.ca'
 EMAIL_HOST_PASSWORD = 'ne:]5V;2'
 EMAIL_USE_TLS = True
@@ -181,12 +181,11 @@ DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 RECAPTCHA_PUBLIC_KEY = '6LdwPQ0rAAAAAJQq_3CtiFYCjl8I8_BcOsv1VTWv'
 RECAPTCHA_PRIVATE_KEY = '6LdwPQ0rAAAAADwv0ftgHnKM8m1q2_349n-j1r3N'
 
-RECAPTCHA_PROXY = {'http': 'http://miltonmastersbadminton.ca', 'https': 'https://miltonmastersbadminton.ca'}
+# RECAPTCHA_PROXY = {'http': 'http://miltonmastersbadminton.ca', 'https': 'https://miltonmastersbadminton.ca'}
 
 IMPORT_FORMATS = [CSV]
 # single export options
 EXPORT_FORMATS = [CSV]
-
 
 # CACHES = {
 #     # … default cache config and others
@@ -201,6 +200,5 @@ EXPORT_FORMATS = [CSV]
 
 # Tell select2 which cache configuration to use:
 # SELECT2_CACHE_BACKEND = "select2"
-SELECT2_USE_BUNDLED_JQUERY  = True
-SELECT2_USE_BUNDLED_SELECT2   = True
-
+SELECT2_USE_BUNDLED_JQUERY = True
+SELECT2_USE_BUNDLED_SELECT2 = True
