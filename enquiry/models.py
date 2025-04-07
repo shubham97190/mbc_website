@@ -11,11 +11,11 @@ class Enquiry(models.Model):
     )
 
     REFERRERAL_CHOICES = (
-        ('', 'How Did You Hear About Milton Badminton Club?'),
+        ('', 'How Did You Hear About Milton Masters Badminton?'),
         (1, 'Social Media'),
         (2, 'Website'),
         (3, 'Search Engine'),
-        (4, 'Friend/Family or collegue'),
+        (4, 'Friend/Family'),
         (5, 'Other'),
     )
 
@@ -26,7 +26,8 @@ class Enquiry(models.Model):
     email = models.EmailField()
     telephone = models.CharField(max_length=100)
     enquirer_type = models.PositiveIntegerField(choices=ENQUIRER_TYPE_CHOICES, verbose_name='Are you an')
-    referrer = models.PositiveIntegerField(choices=REFERRERAL_CHOICES, verbose_name='How did you hear about Milton Badminton Club?')
+    referrer = models.PositiveIntegerField(choices=REFERRERAL_CHOICES, verbose_name='How did you hear about Milton '
+                                                                                    'Masters Badminton?')
 
     sector = models.CharField(max_length=100)
     message = models.TextField()

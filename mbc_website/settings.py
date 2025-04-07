@@ -177,10 +177,10 @@ EMAIL_FROM_ALIAS = 'admin@miltonmastersbadminton.ca'
 FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 
-RECAPTCHA_PUBLIC_KEY = '6Lfl6RcaAAAAAGrG946PcoD7YigQlUjgcK9cscRO'
-RECAPTCHA_PRIVATE_KEY = '6Lfl6RcaAAAAAG9YgPWcr9nRDlrZx-7KAiacU8W7'
+RECAPTCHA_PUBLIC_KEY = '6LdbKw0rAAAAAJvKQf1VeXkD0PyPWaP1b9eTHulS'
+RECAPTCHA_PRIVATE_KEY = '6LdbKw0rAAAAAKpntrZcJHz1K3OKICKeVxrZCs6N'
 
-RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}
+RECAPTCHA_PROXY = {'http': 'http://miltonmastersbadminton.ca', 'https': 'https://miltonmastersbadminton.ca'}
 
 IMPORT_FORMATS = [CSV]
 # single export options

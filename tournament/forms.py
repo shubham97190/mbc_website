@@ -7,7 +7,7 @@ from .models import Player, Tournament, TournamentCategory
 
 
 class TournamentRegistrationForm(forms.ModelForm):
-    # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     terms_confirmed = forms.BooleanField(required=True)
     facility_request = forms.BooleanField(required=True)
     tournament_rules = forms.BooleanField(required=True)
@@ -40,7 +40,7 @@ class TournamentRegistrationForm(forms.ModelForm):
             'terms_confirmed',
             'facility_request',
             'tournament_rules'
-            # 'captcha',
+            'captcha',
         ]
 
         widgets = {
