@@ -1,16 +1,12 @@
 {% extends 'emails/base.html' %}
 
 {% block content %}
-    <p>The following message was sent from the For Business enquiry form on the mbc_website website.</p>
+    <p>The following message was sent from the For Business enquiry form on the Milton Masters Badminton website.</p>
     <p><strong>First Name:</strong> {{ enquiry.first_name }} </p>
     <p><strong>Surname:</strong> {{ enquiry.surname }} </p>
-    <p><strong>Company:</strong> {{ enquiry.company }} </p>
-    <p><strong>Position:</strong> {{ enquiry.position }} </p>
     <p><strong>Email:</strong> {{ enquiry.email }} </p>
     <p><strong>Telephone:</strong> {{ enquiry.telephone }} </p>
     <p><strong>Enquirer Type:</strong> {{ enquiry.get_enquirer_type_display }} </p>
     <p><strong>How Heard:</strong> {{ enquiry.get_referrer_display }}</p>
-    <p><strong>Sector:</strong> {{ enquiry.sector }}</p>
     <p><strong>Message:</strong>{{ enquiry.message }}</p>
-   
 {% endblock %}
