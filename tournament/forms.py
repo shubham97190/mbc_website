@@ -39,7 +39,7 @@ class TournamentRegistrationForm(forms.ModelForm):
             'opt_in',
             'terms_confirmed',
             'facility_request',
-            'tournament_rules'
+            'tournament_rules',
             'captcha',
         ]
 

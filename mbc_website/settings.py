@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'mbc_website.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            "NAME": os.getenv("DB_NAME", default='mbc_website_db'),
+            "NAME": os.getenv("DB_NAME", default='mmb_website_db'),
             "USER": os.getenv("DB_USERNAME", default='root'),
             "PASSWORD": os.getenv("DB_PASSWORD", default='Look4word4u'),
             "HOST": os.getenv("DB_HOST", default='localhost'),
