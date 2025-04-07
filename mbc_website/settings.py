@@ -165,24 +165,17 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
-# EMAIL_HOST = 'mail.24livehost.com'
-# EMAIL_HOST_USER = 'ds25@24livehost.com'
-# EMAIL_HOST_PASSWORD = 'Dsmtp@909#'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# TO_EMAIL = 'harish.kumar@dotsquares.com'
-# FROM_EMAIL = 'harish.kumar@dotsquares.com'
-
 # -------------------------------------------------- SMTP --------------------------------------------------
 # file path: backend/email.py
 EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.hostinger.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'projectbasics01@gmail.com'
-EMAIL_HOST_PASSWORD = 'wtfurylqaucdbpey '
+EMAIL_HOST_USER = 'internal@miltonmastersbadminton.ca'
+EMAIL_HOST_PASSWORD = 'ne:]5V;2'
 EMAIL_USE_TLS = True
-FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_HOST_USER}>"
-DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_HOST_USER}>"
+EMAIL_FROM_ALIAS = 'admin@miltonmastersbadminton.ca'
+FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
+DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 
 RECAPTCHA_PUBLIC_KEY = '6Lfl6RcaAAAAAGrG946PcoD7YigQlUjgcK9cscRO'
 RECAPTCHA_PRIVATE_KEY = '6Lfl6RcaAAAAAG9YgPWcr9nRDlrZx-7KAiacU8W7'
