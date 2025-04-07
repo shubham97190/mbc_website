@@ -9,14 +9,18 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path, PurePath
 from import_export.formats.base_formats import CSV
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
 MEDIA_ROOT = PurePath(BASE_DIR, 'media')
+
+DOTENV_PATH = BASE_DIR / ".env"
+load_dotenv(DOTENV_PATH)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -103,17 +107,15 @@ WSGI_APPLICATION = 'mbc_website.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mbc_website_db',
-        'USER': 'root',
-        'PASSWORD': 'Look4word4u',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            # "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
-        }
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            "NAME": os.getenv("DB_NAME", default='mbc_website_db'),
+            "USER": os.getenv("DB_USERNAME", default='root'),
+            "PASSWORD": os.getenv("DB_PASSWORD", default='Look4word4u'),
+            "HOST": os.getenv("DB_HOST", default='localhost'),
+            "PORT": os.getenv("DB_PORT", default=3306),
     }
 }
 
