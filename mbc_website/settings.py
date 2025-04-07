@@ -167,7 +167,8 @@ STATIC_ROOT = BASE_DIR / "static"
 
 # -------------------------------------------------- SMTP --------------------------------------------------
 # file path: backend/email.py
-EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
+#EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.hostinger.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'internal@miltonmastersbadminton.ca'
