@@ -9,26 +9,20 @@ class EnquiryForm(forms.ModelForm):
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     class Meta:
-        fields = ['first_name', 'surname', 'company', 'position', 'email', 'telephone', 'enquirer_type', 'referrer',
-                  'sector', 'message', 'captcha']
+        fields = ['first_name', 'surname', 'email', 'telephone', 'enquirer_type', 'referrer',
+                  'message', 'captcha']
         model = Enquiry
         widgets = {
             'first_name': forms.TextInput(
                 attrs={'id': 'id_first_name', 'class': 'form-control input-md', 'placeholder': 'First Name'}),
             'surname': forms.TextInput(
                 attrs={'id': 'id_surname', 'class': 'form-control input-md', 'placeholder': 'Last Name'}),
-            'company': forms.TextInput(
-                attrs={'id': 'id_company', 'class': 'form-control input-md', 'placeholder': 'Company'}),
-            'position': forms.TextInput(
-                attrs={'id': 'id_position', 'class': 'form-control input-md', 'placeholder': 'Position'}),
             'email': forms.TextInput(
                 attrs={'id': 'id_email', 'class': 'form-control input-md', 'placeholder': 'Email'}),
             'telephone': forms.TextInput(
                 attrs={'id': 'id_telephone', 'class': 'form-control input-md', 'placeholder': 'Telephone'}),
             'enquirer_type': forms.Select(attrs={'id': 'id_enquirer_type', 'class': 'form-control input-md', }),
             'referrer': forms.Select(attrs={'id': 'id_referrer', 'class': 'form-control input-md', }),
-            'sector': forms.TextInput(
-                attrs={'id': 'id_sector', 'class': 'form-control input-md', 'placeholder': 'Sector'}),
             'message': forms.Textarea(attrs={'id': 'id_message', 'class': 'form-control', 'placeholder': 'Message'}),
         }
 

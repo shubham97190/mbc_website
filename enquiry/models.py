@@ -21,15 +21,15 @@ class Enquiry(models.Model):
 
     first_name = models.CharField(max_length=100, verbose_name='First Name')
     surname = models.CharField(max_length=100, null=True)
-    company = models.CharField(max_length=100)
-    position = models.CharField(max_length=100)
+    company = models.CharField(null=True, max_length=100)
+    position = models.CharField(null=True, max_length=100)
     email = models.EmailField()
     telephone = models.CharField(max_length=100)
     enquirer_type = models.PositiveIntegerField(choices=ENQUIRER_TYPE_CHOICES, verbose_name='Are you an')
     referrer = models.PositiveIntegerField(choices=REFERRERAL_CHOICES, verbose_name='How did you hear about Milton '
                                                                                     'Masters Badminton?')
 
-    sector = models.CharField(max_length=100)
+    sector = models.CharField(null=True, max_length=100)
     message = models.TextField()
     added = models.DateTimeField(auto_now_add=True, editable=False)
     ip_address = models.CharField(max_length=100, editable=False)
