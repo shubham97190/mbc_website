@@ -177,8 +177,8 @@ EMAIL_FROM_ALIAS = 'admin@miltonmastersbadminton.ca'
 FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 DEFAULT_FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"
 
-RECAPTCHA_PUBLIC_KEY = '6LdbKw0rAAAAAJvKQf1VeXkD0PyPWaP1b9eTHulS'
-RECAPTCHA_PRIVATE_KEY = '6LdbKw0rAAAAAKpntrZcJHz1K3OKICKeVxrZCs6N'
+RECAPTCHA_PUBLIC_KEY = '6LdwPQ0rAAAAAJQq_3CtiFYCjl8I8_BcOsv1VTWv'
+RECAPTCHA_PRIVATE_KEY = '6LdwPQ0rAAAAADwv0ftgHnKM8m1q2_349n-j1r3N'
 
 RECAPTCHA_PROXY = {'http': 'http://miltonmastersbadminton.ca', 'https': 'https://miltonmastersbadminton.ca'}
 
