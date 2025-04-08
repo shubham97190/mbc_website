@@ -206,3 +206,13 @@ label{font-weight: 900;}
 .normal {
     text-transform: none;
 }
+.font-weight-800{
+    font-weight:800;
+}
+.font-size-80px {
+    font-size:5rem;
+}
+
+.font-size-60px {
+   font-size:3.75rem
+}
