@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -27,18 +27,28 @@
 
 <body>
     <div class="wrapper">
-        <div class="main-banner">
+        <div class="main-banner d-md-inline d-lg-inline">
             <div class="site-logo-mmb">
                 <a href="{% url 'home' %}">
                     <img src="{% static 'images/logo_black.png' %}" alt="">
                 </a>
             </div>
-
+            <div class="show-banner">
             {% block banner %}{% endblock %}
+            </div>
             {% comment %}
-            <div class="icon-play"> <a href="{% url 'home' %}"><img src="{% static 'images/icon-play.png' %}" width="140" alt=""></a></div>    
+            <div class="icon-play"> <a href="{% url 'home' %}"><img src="{% static 'images/icon-play.png' %}" width="140" alt=""></a></div>
             {% endcomment %}
         </div>
+        <div class="d-xs-inline d-sm-inline d-md-none">
+            <div class="site-logo-sm ">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo_black.png' %}" alt="">
+                </a>
+            </div>
+            <hr>
+        </div>
+
         <div class="header-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">

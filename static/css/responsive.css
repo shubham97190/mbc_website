@@ -58,11 +58,11 @@
     .navbar .dropdown-menu .dropdown-inner{padding-top:0}
     .main-banner img{min-height:200px;object-fit:cover;}
     .main-banner .site-logo img, .icon-play img{min-height: inherit;}
-    .site-logo{position:absolute; right:20px;top:20px;}
-    .navbar-toggler{padding:0;font-size: 1.5rem;text-transform: uppercase;}
+    .site-logo-mmb{ position:absolute; float:left; left:2rem; top:1rem; width:26rem}
+    .navbar-toggler{padding:0;font-size: 1.8rem;text-transform: uppercase;}
     .navbar-toggler:focus{outline: none;}
     .navbar{border: none; justify-content: flex-end;padding:25px 0px 0;margin-bottom: 0;max-width: 100%;}
-    .navbar li a{font-size: 1.5rem;}
+    .navbar li a{font-size: 1.8rem;}
     .header-menu{margin-bottom:10px;}
     h2{font-size:1rem;margin-bottom: 1rem;}
     .step-number {width:60px;height:60px;font-size: 50px;}
@@ -111,22 +111,23 @@
 
 @media screen and (max-width:767px){
     .smart-section {padding:20px 0 50px;}
+    .show-banner{display:none}
      body{font-size:0.75rem}
-    .site-logo{position:absolute; right:20px;top:20px;}
-    .site-logo img{max-width:75px}
+    .site-logo{ left:1rem; top: 0.5rem; position: relative; width:12rem;}
+    .site-logo img{max-width:15rem}
     .icon-play{width:55px;height:55px}
     .row-reverse{flex-direction: column-reverse;}
     .body-container{margin:0}
     .sidebar-mobthumb{padding:0;margin:15px 0 40px}
     .sidebar-mobthumb img{max-width:150px}
     .welcome-text{margin:0}
-    .navbar-toggler{padding:0;font-size: 1.3rem;text-transform: uppercase;}
+    .navbar-toggler{padding:0;font-size: 1.5rem;text-transform: uppercase;}
     .navbar-toggler:focus{outline: none;}
     .navbar{border: none; justify-content: flex-end;padding:25px 25px 0 0;margin-bottom: 0;}
-    .navbar li a{font-size: 1rem;}
+    .navbar li a{font-size: 1.5rem;}
     .main-banner img{min-height: 150px;object-fit:cover;}
     .main-banner .site-logo img, .icon-play img{min-height: inherit;}
-    h2{font-size:1rem;margin-bottom: 1.5rem;}
+     h2{font-size:1rem;margin-bottom: 1rem;}
     .welcome-text .text-link{margin:10px 0}
     .welcome-text hr{display: none;}
     .casestudy-section {margin: 40px 0 40px;}
@@ -155,7 +156,7 @@
     footer{padding:30px 0 20px}
     .footer-address{font-size: 0.7rem;}
     .footer-phone{margin:0 0 25px}
-    p{margin-bottom: 1rem;}
+    p{margin-bottom: .1rem;}
     .footer-menu{float: none; display:flex;padding: 30px 0 0;}
     .footer-menu ul{display: flex; justify-content:center;}
     .footer-menu ul li{margin-right:10px}
