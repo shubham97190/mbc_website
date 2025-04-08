@@ -111,6 +111,7 @@
     }
 
 @media screen and (max-width:767px){
+    body{font-size:0.5rem}
     .smart-section {padding:20px 0 50px;}
     .show-banner{display:none}
      body{font-size:0.75rem}
@@ -128,7 +129,9 @@
     .navbar li a{font-size: 1.2rem;}
     .main-banner img{min-height: 150px;object-fit:cover;}
     .main-banner .site-logo img, .icon-play img{min-height: inherit;}
-    h2{font-size:1rem;margin-bottom: 1.5rem;}
+    h2{font-size:1.5rem;margin-bottom: 1.5rem;}
+    .home-text-block h3{font-size:1.1rem;}
+     .home-text-block h4{font-size:1rem;}
     .welcome-text .text-link{margin:10px 0}
     .welcome-text hr{display: none;}
     .casestudy-section {margin: 40px 0 40px;}
@@ -227,5 +230,5 @@
     .abstract-bg .abstract-mob-bg { background: url(../images/enterprise-bg.png) center top no-repeat;}
     .stats-body {margin: 150px 0 0;}
     .smart-thumb{max-width:200px;margin:auto}
-    .font-size-80px {font-size:3.5rem} .font-size-60px {font-size:2.5rem}
+    .font-size-80px {font-size:2.4rem} .font-size-60px {font-size:1.7rem}
 }
