@@ -216,3 +216,8 @@ label{font-weight: 900;}
 .font-size-60px {
    font-size:3.75rem
 }
+label.required::after {
+    content: ' *';
+    color: red;
+}
+

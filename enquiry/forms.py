@@ -6,6 +6,7 @@ from .models import Enquiry, MagicBlueCircleEnquiry
 
 class EnquiryForm(forms.ModelForm):
     # captcha = ReCaptchaField(label="Are you human?")
+    required_css_class = 'required'
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
 
     class Meta:

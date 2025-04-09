@@ -47,28 +47,32 @@ function showData(id){
 
 function fetch(element_id, api_url, value){
   var ref = $('#'+element_id)
-  ref.html('');
-  if(value !=''){
-     axios
-      .get(api_url+`${value}`+'/')
-      .then(function (response) {
-        if (response.status === 200) {
-         ref.html(response.data);
+  if(ref){
+      ref.html('');
+      if(value !=''){
+         axios
+          .get(api_url+`${value}`+'/')
+          .then(function (response) {
+            if (response.status === 200) {
+             ref.html(response.data);
+            }
+          })
+          .catch((error) => {
+             ref.html('');
+             console.error(error);
+          });
         }
-      })
-      .catch((error) => {
-         ref.html('');
-         console.error(error);
-      });
-  }
+    }
 }
 
 function updatePhone(){
   const phoneInputField = document.querySelector("#id_mobile");
-   const phoneInput = window.intlTelInput(phoneInputField, {'onlyCountries': ["CA"],
-     utilsScript:
-       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-   });
+  if(phoneInputField){
+      const phoneInput = window.intlTelInput(phoneInputField, {'onlyCountries': ["CA"],
+         utilsScript:
+           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+       });
+   }
  }
 
  function formatMobile(){

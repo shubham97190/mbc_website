@@ -7,6 +7,7 @@ from .models import Player, Tournament, TournamentCategory
 
 
 class TournamentRegistrationForm(forms.ModelForm):
+    required_css_class = 'required'
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
     terms_confirmed = forms.BooleanField(required=True)
     facility_request = forms.BooleanField(required=True)
@@ -52,13 +53,13 @@ class TournamentRegistrationForm(forms.ModelForm):
                 attrs={'id': 'id_name', 'class': 'form-control input-md', 'placeholder': 'Your Name',
                        'onBlur': 'populateTeam(this.value)'}),
             'certificate_name': forms.TextInput(attrs={'id': 'id_certificate_name', 'class': 'form-control input-md',
-                                                       'placeholder': 'Name on Certificate (Leave empty if same as '
+                                                       'placeholder': 'Name on certificate (Leave empty if same as '
                                                                       'above)'}),
             'partner_name': forms.TextInput(attrs={'id': 'id_partner_name', 'class': 'form-control input-md',
                                                    'placeholder': 'Your Partner Name (add NA if not confirmed)'}),
             'certificate_partner_name': forms.TextInput(
                 attrs={'id': 'id_certificate_partner_name', 'class': 'form-control input-md',
-                       'placeholder': 'Partner Name on Certificate (Leave empty if same as above)'}),
+                       'placeholder': 'Partner Name on certificate (Leave empty if same as above)'}),
             'team_name': forms.TextInput(attrs={'id': 'id_team_name', 'class': 'form-control input-md',
                                                 'placeholder': 'Team Name (add NA if not sure)'}),
             'mobile': RegionalPhoneNumberWidget(region="CA", attrs={'id': 'id_mobile', 'class': 'form-control input-md',

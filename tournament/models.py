@@ -60,11 +60,11 @@ class Player(models.Model):
     is_active = models.BooleanField(default=True, verbose_name="Is Active?")
     name = models.CharField(max_length=255, verbose_name="Your Name")
     certificate_name = models.CharField(blank=True, max_length=255,
-                                        verbose_name="Your Name on Certificate? Please leave empty "
+                                        verbose_name="Your Name on certificate? Please leave empty "
                                                      "if same as above")
     partner_name = models.CharField(max_length=255, verbose_name="Your partner name? If not confirmed please add NA")
     certificate_partner_name = models.CharField(blank=True, max_length=255, verbose_name="Your partner name on "
-                                                                                         "Certificate? If not "
+                                                                                         "certificate? If not "
                                                                                          "confirmed please add NA or "
                                                                                          "leave empty "
                                                                                          "if same as above")
@@ -76,12 +76,13 @@ class Player(models.Model):
     email = models.CharField(max_length=255)
     comments = models.CharField(blank=True, max_length=500, verbose_name="Any questions/comments - please add.")
     unisex_cap_order = models.BooleanField(default=False, verbose_name="Unisex cap - White Color/Black print $5/each")
-    terms_confirmed = models.BooleanField(blank=False, default=False, verbose_name="Terms & Conditions Acknowledged")
+    terms_confirmed = models.BooleanField(blank=False, default=False, verbose_name="Terms & Conditions Acknowledged ("
+                                                                                   "required)")
     opt_in = models.BooleanField(default=False, verbose_name="Opt-In: Consent required, If Milton Masters can collect "
                                                              "and store your team's tournament performance, "
                                                              "for reporting annual progression.")
-    facility_request = models.BooleanField(default=False, verbose_name="Facility Request Acknowledged")
-    tournament_rules = models.BooleanField(default=False, verbose_name="Tournament Rules Acknowledged")
+    facility_request = models.BooleanField(default=False, verbose_name="Facility Request Acknowledged (required)")
+    tournament_rules = models.BooleanField(default=False, verbose_name="Tournament Rules Acknowledged (required) ")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="player_created_by")
