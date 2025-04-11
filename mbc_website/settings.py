@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path, PurePath
-from import_export.formats.base_formats import CSV
+from import_export.formats.base_formats import CSV, XLS
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -184,7 +184,7 @@ RECAPTCHA_PRIVATE_KEY = '6LdwPQ0rAAAAADwv0ftgHnKM8m1q2_349n-j1r3N'
 
 IMPORT_FORMATS = [CSV]
 # single export options
-EXPORT_FORMATS = [CSV]
+EXPORT_FORMATS = [CSV, XLS]
 
 # CACHES = {
 #     # … default cache config and others
