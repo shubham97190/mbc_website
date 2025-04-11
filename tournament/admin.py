@@ -1,11 +1,12 @@
-import phonenumber_field.modelfields
 from django.contrib import admin
-from django import forms
 from django.db import models
 # Register your models here.
+from import_export.admin import ExportActionModelAdmin
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
+
 from djboomin.widgets import RichTextEditorWidget
 from tournament.models import Tournament, Player, TournamentCategory
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from tournament.resource import PlayerResource
 
 
 @admin.register(Tournament)
@@ -30,7 +31,8 @@ class TournamentPageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Player)
-class MemberPageAdmin(admin.ModelAdmin):
+class MemberPageAdmin(ExportActionModelAdmin):
+    resource_classes = [PlayerResource]
     search_fields = ['name', 'partner_name', 'certificate_name', 'certificate_partner_name', 'mobile', 'email']
     list_display = [
         "tournament",
