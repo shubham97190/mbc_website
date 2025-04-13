@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path, PurePath
-from import_export.formats.base_formats import CSV
+from import_export.formats.base_formats import CSV, XLSX
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +31,7 @@ SECRET_KEY = '5png92==hs!1%dndh4$=%+$whe_-4fll+6c(osy===3!1dg+0e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.5.138', 'mbc_website.24livehost.com', '111.93.53.163', '*']
+ALLOWED_HOSTS = ['127.0.0.1', 'miltonmastersbadminton.ca', '*']
 
 # Application definition
 
@@ -160,10 +160,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "static"
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static"
-# ]
+# STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 # -------------------------------------------------- SMTP --------------------------------------------------
 # file path: backend/email.py
@@ -184,7 +184,7 @@ RECAPTCHA_PRIVATE_KEY = '6LdwPQ0rAAAAADwv0ftgHnKM8m1q2_349n-j1r3N'
 
 IMPORT_FORMATS = [CSV]
 # single export options
-EXPORT_FORMATS = [CSV]
+EXPORT_FORMATS = [CSV, XLSX]
 
 # CACHES = {
 #     # … default cache config and others
