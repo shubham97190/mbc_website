@@ -2,20 +2,21 @@
 {% load static %}
 
 {% block banner %}
-    {% if page.page_banner %}
-        <img src="{{ page.page_banner.url }}" alt="">
-    {% else %}
-        <img src="{% static 'images/banner-enterprise.jpg' %}" alt="">
-    {% endif %}
+{% if page.banner %}
+<img src="{{ page.banner.url }}" xmlns="http://www.w3.org/1999/html" alt="">
+{% else %}
+<img class="img-responsive" src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:45rem"  alt="">
+{% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="legal-content">
-        <div class="container">
+<div class="enterprise-content">
+    <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>{{ page.title }}</h2>
-                    {{ page.content|safe }}
+                    <p>{{ page.description }}</p>
+                    <p>{{ page.content }}</p>
                 </div>
             </div>
         </div>
