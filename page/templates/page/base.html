@@ -75,23 +75,7 @@
 <!--                                {% url 'tournament-list' as location_url %}-->
 <!--                                <a class="nav-link {% if request.path == location_url %}active{% endif %}" href="{{ location_url }}">Tournaments</a>-->
 <!--                            </li>-->
-                            <li class="nav-item">
-                                {% url 'page' as enterprise_url %}
-                                <a class="nav-link dropdown-toggle {% if request.path == enterprise_url %}active{% endif %}" href="#" id="dropdown10">Category</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown10">
-                                    <div class="dropdown-inner">
-                                    {% url 'page' 'open-category' as smart_url %}
-                                    <a class="dropdown-item {% if request.path == smart_url %}active{% endif %}" href="{{ smart_url }}">Open Category</a>
-                                    {% url 'page' '50-category' as on_the_move_url %}
-                                    <a class="dropdown-item {% if request.path == on_the_move_url %}active{% endif %}" href="{{ on_the_move_url }}">50+ Category</a>
-                                    {% url 'page' '40-category' as live_events_url %}
-                                    <a class="dropdown-item {% if request.path == live_events_url %}active{% endif %}" href="{{ live_events_url }}">40+ Category</a>
-                                    {% url 'page' 'mixed-doubles-category' as retail_url %}
-                                    <a class="dropdown-item {% if request.path == retail_url %}active{% endif %}" href="{{ retail_url }}">Mixed Doubles Category</a>
-                                    {% url 'page' 'rating-calculation-math' as rating_url %}
-                                    <a class="dropdown-item {% if request.path == rating_url %}active{% endif %}" href="{{ rating_url }}">Rating % calculation math</a>
-                                </div>
-                            </div>
+                            
                             <li class="nav-item">
                                 {% url 'registration' as registration_url %}
                                 <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">2025 Registration form</a>
