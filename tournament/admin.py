@@ -65,7 +65,6 @@ class MemberPageAdmin(ExportActionModelAdmin):
         return obj.partner_name
     
     send_email_for_payment.short_description = "Send Email for payment selected Players"
-    send_email_for_payment.allowed_permissions = ('send_email_for_payment',)
     actions = [send_email_for_payment]
 
 
