@@ -81,8 +81,7 @@
                                 <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">2025 Registration form</a>
                             </li>
                             <li class="nav-item">
-                                {% url 'registration' as registration_url %}
-                                <a class="nav-link {% if request.path == '/2025-winners/' %}active{% endif %}" href="/2025-winners">2025 Registration Winners</a>
+                                <a class="nav-link {% if request.path == '/2025-winners/' %}active{% endif %}" href="/2025-winners">2025 Tournament Winners</a>
                             </li>
 <!--                            <li class="nav-item">-->
 <!--                                <a class="nav-link dropdown-toggle" id="dropdown10">2025 Tournament Fixtures</a>-->

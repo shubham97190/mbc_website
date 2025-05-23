@@ -29,9 +29,8 @@ def send_email(registration):
         [registration.email],
     )
     for f in [f'{BASE_DIR}/static/admin/images/logo-email.png']:
-        fp = open(os.path.join(os.path.dirname(__file__), f), 'rb')
-        msg_img = MIMEImage(fp.read())
-        fp.close()
+        with open(os.path.join(os.path.dirname(__file__), f), 'rb') as fp:
+            msg_img = MIMEImage(fp.read())
         msg_img.add_header('Content-ID', '<logo>')
         msg_img.add_header("Content-Disposition", "inline", filename="logo")
         msg.attach(msg_img)

@@ -52,6 +52,10 @@ class MemberPageAdmin(ExportActionModelAdmin):
         obj.updated_by = request.user
         return super().save_model(request, obj, form, change)
 
+    def send_email_for_payment(self, request, queryset):
+        message_bit = queryset.count()
+        self.message_user(request, f"{message_bit} successfully email sent.")
+
     @admin.display(description="Category Name", ordering="get_category_name")
     def get_category_name(self, obj):
         return obj.category.first()
@@ -59,6 +63,10 @@ class MemberPageAdmin(ExportActionModelAdmin):
     @admin.display(description="Partner Name", ordering="get_partner_name")
     def get_partner_name(self, obj):
         return obj.partner_name
+    
+    send_email_for_payment.short_description = "Send Email for payment selected Players"
+    send_email_for_payment.allowed_permissions = ('send_email_for_payment',)
+    actions = [send_email_for_payment]
 
 
 @admin.register(TournamentCategory)
