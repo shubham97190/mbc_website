@@ -65,7 +65,7 @@
                             </li>
                             <li class="nav-item">
                                 {% url 'fixtures' as fixtures_url %}
-                                <a class="nav-link {% if request.path == fixtures_url %}active{% endif %}" href="{{ fixtures_url }}">2026 Tournament Details</a>
+                                <a class="nav-link {% if request.path == fixtures_url %}active{% endif %}" href="{{ fixtures_url }}">{{ active_tournament_year }} Tournament Details</a>
                             </li>
 <!--                            <li class="nav-item">-->
 <!--                                {% url 'rules' as rules_url %}-->
@@ -78,10 +78,10 @@
                             
                             <li class="nav-item">
                                 {% url 'registration' as registration_url %}
-                                <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">2026 Registration form</a>
+                                <a class="nav-link {% if request.path == registration_url %}active{% endif %}" href="{{ registration_url }}">{{ active_tournament_year }} Registration form</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {% if request.path == '/2025-winners/' %}active{% endif %}" href="/2025-winners">Past Tournament Winners</a>
+                                <a class="nav-link {% if '/winners' in request.path %}active{% endif %}" href="{% url 'winners' %}">Tournament Winners</a>
                             </li>
 <!--                            <li class="nav-item">-->
 <!--                                <a class="nav-link dropdown-toggle" id="dropdown10">2025 Tournament Fixtures</a>-->

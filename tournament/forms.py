@@ -20,8 +20,12 @@ class TournamentRegistrationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TournamentRegistrationForm, self).__init__(*args, **kwargs)
         t: Tournament = Tournament.objects.filter(status=0, is_current_active=True)
+        active_tournament = t.first()
         self.fields['tournament'].queryset = t
-        self.fields['tournament'].initial = t and t.first().pk
+        self.fields['tournament'].initial = active_tournament and active_tournament.pk
+        self.fields['category'].queryset = TournamentCategory.objects.filter(
+            is_active=True, tournament=active_tournament
+        ) if active_tournament else TournamentCategory.objects.none()
 
     class Meta:
         model = Player

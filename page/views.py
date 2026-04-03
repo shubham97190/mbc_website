@@ -11,7 +11,7 @@ from blog.models import Article
 from enquiry.forms import EnquiryForm
 from faq.models import Question
 from fixtures.models import Fixtures
-from tournament.models import Tournament, TournamentCategory
+from tournament.models import Tournament, TournamentCategory, TournamentWinnerPage
 from .models import *
 from location.models import Location
 from rules.models import Rules
@@ -175,3 +175,32 @@ class FixturesPageView(TemplateView):
                                        to_attr='categories'
                                        )).order_by("tournament_date_time").first()
         return context
+
+
+class WinnersListView(ListView):
+    template_name = "page/winners.html"
+    context_object_name = "winner_pages"
+
+    def get_queryset(self):
+        return TournamentWinnerPage.objects.filter(is_published=True).select_related("tournament").order_by("-tournament__tournament_date_time")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        active = Tournament.objects.filter(is_current_active=True).first()
+        current_winner = None
+        past_winners = context["winner_pages"]
+        if active:
+            current_winner = past_winners.filter(tournament=active).first()
+            past_winners = past_winners.exclude(tournament=active)
+        context["current_winner"] = current_winner
+        context["past_winners"] = past_winners
+        return context
+
+
+class WinnerDetailView(DetailView):
+    model = TournamentWinnerPage
+    template_name = "page/winner-detail.html"
+    context_object_name = "winner"
+
+    def get_queryset(self):
+        return TournamentWinnerPage.objects.filter(is_published=True).select_related("tournament")

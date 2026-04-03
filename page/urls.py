@@ -21,6 +21,8 @@ urlpatterns = [
     path('rules/', RulesPageView.as_view(), name='rules'),
     path('fixtures/', FixturesPageView.as_view(), name='fixtures'),
     path('sitemap/', SitemapPageView.as_view(), name='sitemap'),
+    path('winners/', WinnersListView.as_view(), name='winners'),
+    path('winners/<int:pk>/', WinnerDetailView.as_view(), name='winners-detail'),
     path('<slug:slug>/', GenericPageView.as_view(), name='page'),
 ]
 

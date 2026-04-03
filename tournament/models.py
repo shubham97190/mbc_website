@@ -90,3 +90,26 @@ class Player(models.Model):
 
     def __str__(self):
         return "{0} ({1})".format(self.name, self.partner_name)
+
+
+class TournamentWinnerPage(models.Model):
+    tournament = models.OneToOneField(Tournament, on_delete=models.CASCADE, related_name="winner_page")
+    title = models.CharField(max_length=255)
+    summary = models.CharField(max_length=500, blank=True, help_text="Short summary shown on the listing page")
+    content = models.TextField(help_text="Full winner details – supports rich text")
+    banner = models.ImageField(upload_to="winners/banners", blank=True)
+    is_published = models.BooleanField(default=False, verbose_name="Published?")
+    created_date = models.DateField(auto_now_add=True)
+    updated_date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ["-tournament__tournament_date_time"]
+        verbose_name = "Tournament Winner Page"
+        verbose_name_plural = "Tournament Winner Pages"
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("winners-detail", args=[self.pk])
+
+    def __str__(self):
+        return self.title

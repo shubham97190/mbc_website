@@ -113,7 +113,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         "NAME": os.getenv("DB_NAME", default='mbc_website_db'),
         "USER": os.getenv("DB_USERNAME", default='root'),
-        "PASSWORD": os.getenv("DB_PASSWORD", default='Look4word4u'),
+        "PASSWORD": os.getenv("DB_PASSWORD", default='Abcd_1234'),
         "HOST": os.getenv("DB_HOST", default='localhost'),
         "PORT": os.getenv("DB_PORT", default=3306),
     }
@@ -172,7 +172,7 @@ EMAIL_BACKEND = 'mbc_website.email.EmailBackend'
 EMAIL_HOST = 'smtp.hostinger.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'internal@miltonmastersbadminton.ca'
-EMAIL_HOST_PASSWORD = 'ne:]5V;2'
+EMAIL_HOST_PASSWORD = 'q.t]6AC+z#GY4m]'
 EMAIL_USE_TLS = True
 EMAIL_FROM_ALIAS = 'admin@miltonmastersbadminton.ca'
 FROM_EMAIL = f"Milton Masters Badminton <{EMAIL_FROM_ALIAS}>"

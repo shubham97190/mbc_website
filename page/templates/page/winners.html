@@ -1,0 +1,174 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+<img class="img-responsive" src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:45rem" alt="">
+{% endblock %}
+
+{% block content %}
+<style>
+    .winners-section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #189ADD;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #189ADD;
+        padding-bottom: 8px;
+        margin-bottom: 1.5rem;
+    }
+    .winner-card {
+        border: none;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        overflow: hidden;
+        height: 100%;
+        transition: box-shadow 0.2s;
+    }
+    .winner-card:hover {
+        box-shadow: 0 4px 18px rgba(24,154,221,0.18);
+    }
+    .winner-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    .winner-card .card-body {
+        padding: 1.2rem 1.4rem;
+    }
+    .winner-card .tournament-label {
+        font-size: 0.82rem;
+        color: #189ADD;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+    }
+    .winner-card .card-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #232323;
+        margin-bottom: 6px;
+    }
+    .winner-card .card-text {
+        font-size: 0.95rem;
+        color: #555;
+    }
+    .winner-card .btn-theme {
+        background: #189ADD;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        font-size: 0.9rem;
+        padding: 5px 18px;
+    }
+    .winner-card .btn-theme:hover {
+        background: #1270a8;
+        color: #fff;
+    }
+    .winner-card .btn-theme-outline {
+        border: 2px solid #189ADD;
+        color: #189ADD;
+        background: transparent;
+        border-radius: 3px;
+        font-size: 0.9rem;
+        padding: 5px 18px;
+    }
+    .winner-card .btn-theme-outline:hover {
+        background: #189ADD;
+        color: #fff;
+    }
+    .current-badge {
+        display: inline-block;
+        background: #189ADD;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+</style>
+
+<div class="enterprise-content">
+    <div class="container">
+
+        <div class="row align-items-center mb-4">
+            <div class="col-lg-12">
+                <h2 style="font-weight:700; color:#232323;">Tournament Winners</h2>
+                <p style="color:#555;">Celebrating the champions of Milton Masters Badminton Club.</p>
+            </div>
+        </div>
+
+        {% if current_winner %}
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <div class="winners-section-title">Current Tournament</div>
+            </div>
+            <div class="col-lg-12">
+                <div class="winner-card card">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            {% if current_winner.banner %}
+                            <img src="{{ current_winner.banner.url }}" alt="{{ current_winner.title }}" style="height:100%; min-height:240px;">
+                            {% else %}
+                            <img src="{% static 'images/banner-tournament-photp.jpeg' %}" alt="" style="height:100%; min-height:240px;">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-7 d-flex align-items-center">
+                            <div class="card-body">
+                                <span class="current-badge">Current</span>
+                                <p class="tournament-label">{{ current_winner.tournament.name }} &mdash; {{ current_winner.tournament.tournament_date_time|date:"Y" }}</p>
+                                <h3 class="card-title" style="font-size:1.5rem;">{{ current_winner.title }}</h3>
+                                {% if current_winner.summary %}
+                                <p class="card-text">{{ current_winner.summary }}</p>
+                                {% endif %}
+                                <a href="{{ current_winner.get_absolute_url }}" class="btn btn-theme mt-2">View Full Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if past_winners %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="winners-section-title">Past Tournament Winners</div>
+            </div>
+            {% for winner in past_winners %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="winner-card card">
+                    {% if winner.banner %}
+                    <img src="{{ winner.banner.url }}" alt="{{ winner.title }}">
+                    {% else %}
+                    <img src="{% static 'images/banner-tournament-photp.jpeg' %}" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="tournament-label">{{ winner.tournament.name }} &mdash; {{ winner.tournament.tournament_date_time|date:"Y" }}</p>
+                        <h5 class="card-title">{{ winner.title }}</h5>
+                        {% if winner.summary %}
+                        <p class="card-text">{{ winner.summary }}</p>
+                        {% endif %}
+                        <a href="{{ winner.get_absolute_url }}" class="btn btn-theme-outline mt-1">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not current_winner and not past_winners %}
+        <div class="row">
+            <div class="col-lg-12">
+                <p style="color:#555;">No winner pages have been published yet.</p>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
