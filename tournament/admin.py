@@ -116,8 +116,8 @@ class MemberPageAdmin(ExportActionModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        # Default to active tournament when no tournament filter is explicitly set
-        if 'by_tournament' not in request.GET:
+        # Only filter by active tournament on the changelist, not on change/detail views
+        if request.resolver_match.url_name == 'tournament_player_changelist' and 'by_tournament' not in request.GET:
             active = Tournament.objects.filter(is_current_active=True).first()
             if active:
                 return qs.filter(tournament=active)
