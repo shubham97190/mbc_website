@@ -2,41 +2,62 @@
 
 {% block content %}
 <div>
-<h3>The following details submitted on the Milton Masters Badminton registration form.
-    We will get back to you to confirm your registration and for tournament fee.</h3>
-<p>
-    <strong>Tournament:</strong> {{ player.tournament }} </p>
-<p>
-    <strong>Category:</strong> {{ player.category.first }}</p>
-<p>
-    <strong>Your Name:</strong> {{ player.name }} </p>
-<p>
-    <strong>Your Name on Certificate? Please leave empty if same as above:</strong> {{ player.certificate_name }} </p>
-<p>
-    <strong>Your partner name? If not confirmed please add NA:</strong> {{ player.partner_name }} </p>
-<p>
-    <strong>Your partner name on Certificate? If not confirmed please add NA or leave empty if same as above:</strong> {{ player.certificate_partner_name }} </p>
-<p>
-    <strong>Team Name? If not sure please add NA:</strong> {{ player.team_name }} </p>
-<p>
-    <strong>Your mobile number (this would be used for WA messaging the tournament details):</strong> {{ player.mobile }} </p>
-<p>
-    <strong>Any questions/comments - please add:</strong> {{ player.comments }}</p>
-<p>
-    <strong>Unisex cap - White Color/Black print $5/each:</strong>
-    {% if player.unisex_cap_order %} <span class="icon-tick">&#10003;</span> {% else %} <span class="icon-cross"><b>&#10539;</b></span> {% endif %}
+Hi {{ player.name }},
+
+<p>Thank you for registering for <strong>Milton Masters '26</strong>. Below are the details you submitted in the registration form:</p>
+
+<p><strong>Tournament:</strong> {{ player.tournament }}</p>
+<p><strong>Category:</strong> {{ player.category.first }}</p>
+<p><strong>Your Name:</strong> {{ player.name }}</p>
+<p><strong>Name on Certificate:</strong> {{ player.certificate_name|default:player.name }}</p>
+<p><strong>Partner Name:</strong> {{ player.partner_name }}</p>
+<p><strong>Partner Name on Certificate:</strong> {{ player.certificate_partner_name|default:player.partner_name }}</p>
+<p><strong>Team Name:</strong> {{ player.team_name }}</p>
+
+<hr style="border: none; border-top: 1px solid #e0e0e0; margin: 20px 0;">
+
+<h4>Payment Details</h4>
+<ul>
+    <li><strong>E-transfer Email:</strong> VINUGE@GMAIL.COM</li>
+    <li>Auto-deposit is enabled (no password required).</li>
+    <li>Please include your <strong>name in the comments</strong> while making payment.</li>
+    <li>If paying individually, please share these details with your partner.</li>
+    <li><strong>Payment Deadline:</strong> End of day, Friday May 8th 2026</li>
+</ul>
+
+<p><strong>Important:</strong> Please reply to this email to acknowledge receipt. If we do not receive your confirmation, we will follow up via WhatsApp.</p>
+
+<p>We will review your registration and get back to you with confirmation and tournament fee details.</p>
+
+<p>Thank you,<br>
+<strong>Vinu George</strong><br>
+416 670 6373<br>
+For Admin</p>
+
+<hr style="border: none; border-top: 1px solid #e0e0e0; margin: 20px 0;">
+
+<h4>Additional Information</h4>
+<p><strong>Mobile Number:</strong> {{ player.mobile }}</p>
+<p><strong>Comments:</strong> {{ player.comments }}</p>
+
+<p><strong>Unisex Cap ($5):</strong>
+{% if player.unisex_cap_order %} ✔ {% else %} ✖ {% endif %}
 </p>
-<p><strong>Opt-In: Consent required, If Milton Masters can collect and store your team's tournament performance, for reporting annual progression:</strong>
-    {% if player.opt_in %} <span class="icon-tick">&#10003;</span> {% else %} <span class="icon-cross"><b>&#10539;</b></span> {% endif %}
+
+<p><strong>Consent for Performance Tracking:</strong>
+{% if player.opt_in %} ✔ {% else %} ✖ {% endif %}
 </p>
-<p><strong>Terms confirmed:</strong>
-    {% if player.terms_confirmed %} <span class="icon-tick">&#10003;</span> {% else %} <span class="icon-cross"><b>&#10539;</b></span> {% endif %}
+
+<p><strong>Terms Confirmed:</strong>
+{% if player.terms_confirmed %} ✔ {% else %} ✖ {% endif %}
 </p>
-<p><strong>Facility request:</strong>
-    {% if player.facility_request %} <span class="icon-tick">&#10003;</span> {% else %} <span class="icon-cross"><b>&#10539;</b></span> {% endif %}
+
+<p><strong>Facility Request:</strong>
+{% if player.facility_request %} ✔ {% else %} ✖ {% endif %}
 </p>
-<p><strong>Tournament rules:</strong>
-    {% if player.tournament_rules %} <span class="icon-tick">&#10003;</span> {% else %} <span class="icon-cross"><b>&#10539;</b></span> {% endif %}
+
+<p><strong>Tournament Rules Accepted:</strong>
+{% if player.tournament_rules %} ✔ {% else %} ✖ {% endif %}
 </p>
 </div>
 {% endblock %}
