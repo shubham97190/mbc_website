@@ -110,7 +110,6 @@ class MemberPageAdmin(ExportActionModelAdmin):
         "get_category_name",
         "name",
         "get_partner_name",
-        "updated_by",
         "updated_date",
         "resend_email_button",
     ]
