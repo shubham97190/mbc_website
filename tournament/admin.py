@@ -166,12 +166,16 @@ class MemberPageAdmin(ExportActionModelAdmin):
             self.message_user(request, f"Registration email resent to {player.name} ({player.email}).")
         except Exception as e:
             self.message_user(request, f"Failed to send email to {player.name}: {e}", level="error")
-        return HttpResponseRedirect(reverse('admin:tournament_player_changelist'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('admin:tournament_player_changelist')))
 
     @admin.display(description="Resend Email")
     def resend_email_button(self, obj):
         url = reverse('admin:tournament_player_resend_email', args=[obj.pk])
-        return format_html('<a class="button" href="{}">Resend</a>', url)
+        return format_html(
+            '<a class="button" style="background-color: #28a745; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none;" '
+            'onclick="return confirm(\'Are you sure you want to resend the email to {}?\')" href="{}">Resend</a>',
+            obj.name, url
+        )
 
     @admin.display(description="Category Name", ordering="get_category_name")
     def get_category_name(self, obj):
