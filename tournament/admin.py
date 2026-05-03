@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.db import models
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, path
+from django.utils.html import format_html
 # Register your models here.
 from import_export.admin import ExportActionModelAdmin
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
@@ -10,6 +11,7 @@ from django.forms.widgets import Select, TextInput
 from djboomin.widgets import RichTextEditorWidget
 from tournament.models import Tournament, Player, TournamentCategory, TournamentWinnerPage
 from tournament.resource import PlayerResource
+from tournament.views import send_email
 
 
 class TournamentFilter(admin.SimpleListFilter):
@@ -109,7 +111,8 @@ class MemberPageAdmin(ExportActionModelAdmin):
         "name",
         "get_partner_name",
         "updated_by",
-        "updated_date"
+        "updated_date",
+        "resend_email_button",
     ]
     readonly_fields = ('created_by', 'updated_by')
     list_filter = [TournamentFilter, ActiveEventCategoryFilter]
@@ -118,8 +121,7 @@ class MemberPageAdmin(ExportActionModelAdmin):
         qs = super().get_queryset(request)
         # Only filter by active tournament on the changelist, not on change/detail views
         if request.resolver_match.url_name == 'tournament_player_changelist' and 'by_tournament' not in request.GET:
-            active = Tournament.objects.filter(is_current_active=True).first()
-            if active:
+            if active := Tournament.objects.filter(is_current_active=True).first():
                 return qs.filter(tournament=active)
         return qs
 
@@ -136,8 +138,41 @@ class MemberPageAdmin(ExportActionModelAdmin):
         return super().save_model(request, obj, form, change)
 
     def send_email_for_payment(self, request, queryset):
-        message_bit = queryset.count()
-        self.message_user(request, f"{message_bit} successfully email sent.")
+        sent, failed = 0, 0
+        for player in queryset:
+            try:
+                send_email(player)
+                sent += 1
+            except Exception as e:
+                failed += 1
+                self.message_user(request, f"Failed to send email to {player.name}: {e}", level="error")
+        if sent:
+            self.message_user(request, f"{sent} registration email(s) successfully sent.")
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path(
+                '<int:player_id>/resend-email/',
+                self.admin_site.admin_view(self.resend_email_view),
+                name='tournament_player_resend_email',
+            ),
+        ]
+        return custom_urls + urls
+
+    def resend_email_view(self, request, player_id):
+        player = Player.objects.get(pk=player_id)
+        try:
+            send_email(player)
+            self.message_user(request, f"Registration email resent to {player.name} ({player.email}).")
+        except Exception as e:
+            self.message_user(request, f"Failed to send email to {player.name}: {e}", level="error")
+        return HttpResponseRedirect(reverse('admin:tournament_player_changelist'))
+
+    @admin.display(description="Resend Email")
+    def resend_email_button(self, obj):
+        url = reverse('admin:tournament_player_resend_email', args=[obj.pk])
+        return format_html('<a class="button" href="{}">Resend</a>', url)
 
     @admin.display(description="Category Name", ordering="get_category_name")
     def get_category_name(self, obj):
@@ -147,7 +182,7 @@ class MemberPageAdmin(ExportActionModelAdmin):
     def get_partner_name(self, obj):
         return obj.partner_name
 
-    send_email_for_payment.short_description = "Send Email for payment selected Players"
+    send_email_for_payment.short_description = "Resend registration email to selected players"
     actions = [send_email_for_payment]
 
 
