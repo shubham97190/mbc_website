@@ -5,8 +5,7 @@ from django.urls import reverse, path
 from django.utils.html import format_html
 # Register your models here.
 from import_export.admin import ExportActionModelAdmin
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
-from django.forms.widgets import Select, TextInput
+from phonenumber_field.widgets import RegionalPhoneNumberWidget
 
 from djboomin.widgets import RichTextEditorWidget
 from tournament.models import Tournament, Player, TournamentCategory, TournamentWinnerPage
@@ -127,7 +126,7 @@ class MemberPageAdmin(ExportActionModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         if 'mobile' in form.base_fields:
-            form.base_fields['mobile'].widget = PhoneNumberPrefixWidget(widgets=(Select, TextInput))
+            form.base_fields['mobile'].widget = RegionalPhoneNumberWidget(attrs={'class': 'vTextField'})
         return form
 
     def save_model(self, request, obj: Player, form, change):
