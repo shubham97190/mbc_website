@@ -29,6 +29,7 @@ class Tournament(models.Model):
     facility_request = models.TextField(blank=True, null=True)
     tournament_rules = models.TextField(blank=True, null=True)
     is_current_active = models.BooleanField(default=False, verbose_name="Is Active")
+    show_on_teams_dropdown = models.BooleanField(default=False, verbose_name="Show in Teams Dropdown?")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tournament_created_by")

@@ -57,10 +57,12 @@ class TournamentPageAdmin(admin.ModelAdmin):
         "name",
         "total_allowed_registration",
         "is_current_active",
+        "show_on_teams_dropdown",
         "status",
         "created_date",
         "updated_date",
     ]
+    list_editable = ["show_on_teams_dropdown"]
     formfield_overrides = {models.TextField: {"widget": RichTextEditorWidget}}
     readonly_fields = ('created_by', 'updated_by')
     actions = ['duplicate_tournament']

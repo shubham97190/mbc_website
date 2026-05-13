@@ -113,11 +113,15 @@ class TeamsByCategoryView(ListView):
     def _get_tournament(self):
         pk = self.request.GET.get("tournament")
         if pk:
-            return Tournament.objects.filter(pk=pk, is_current_active=True).first()
-        return Tournament.objects.filter(is_current_active=True).order_by("-tournament_date_time").first()
+            return Tournament.objects.filter(pk=pk, show_on_teams_dropdown=True).first()
+        # Default to the current active tournament if it is in the dropdown, otherwise first dropdown entry
+        active = Tournament.objects.filter(is_current_active=True, show_on_teams_dropdown=True).first()
+        if active:
+            return active
+        return Tournament.objects.filter(show_on_teams_dropdown=True).order_by("-tournament_date_time").first()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["all_tournaments"] = Tournament.objects.filter(is_current_active=True).order_by("-tournament_date_time")
+        context["all_tournaments"] = Tournament.objects.filter(show_on_teams_dropdown=True).order_by("-tournament_date_time")
         context["selected_tournament"] = self._get_tournament()
         return context
