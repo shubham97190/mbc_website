@@ -83,6 +83,7 @@ class Player(models.Model):
                                                              "for reporting annual progression.")
     facility_request = models.BooleanField(default=False, verbose_name="Facility Request Acknowledged (required)")
     tournament_rules = models.BooleanField(default=False, verbose_name="Tournament Rules Acknowledged (required) ")
+    show_on_teams_page = models.BooleanField(default=False, verbose_name="Show on Teams Page?")
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="player_created_by")

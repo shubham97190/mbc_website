@@ -109,11 +109,13 @@ class MemberPageAdmin(ExportActionModelAdmin):
         "get_category_name",
         "name",
         "get_partner_name",
+        "show_on_teams_page",
         "updated_date",
         "resend_email_button",
     ]
     readonly_fields = ('created_by', 'updated_by')
-    list_filter = [TournamentFilter, ActiveEventCategoryFilter]
+    list_filter = [TournamentFilter, ActiveEventCategoryFilter, "show_on_teams_page"]
+    list_editable = ["show_on_teams_page"]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -245,3 +247,6 @@ class TournamentWinnerPageAdmin(admin.ModelAdmin):
     search_fields = ["title", "tournament__name"]
     list_editable = ["is_published"]
     formfield_overrides = {models.TextField: {"widget": RichTextEditorWidget}}
+
+
+

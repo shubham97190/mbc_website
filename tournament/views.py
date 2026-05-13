@@ -1,6 +1,7 @@
 import os
 from email.mime.image import MIMEImage
 
+from django.db import models
 from django.utils.timezone import now
 from django.views.generic import ListView
 
@@ -16,7 +17,7 @@ from page.models import HomePageCarousel
 from tournament.forms import TournamentRegistrationForm
 
 # Create your views here.
-from tournament.models import Tournament, Player
+from tournament.models import Tournament, Player, TournamentCategory
 
 
 def send_email(registration):
@@ -87,3 +88,36 @@ class TournamentListView(ListView):
         qs = super().get_queryset(**kwargs)
         qs = qs.filter(is_current_active=True).order_by('-tournament_date_time')
         return qs
+
+
+class TeamsByCategoryView(ListView):
+    template_name = "page/teams-by-category.html"
+    context_object_name = "categories"
+
+    def get_queryset(self):
+        tournament = self._get_tournament()
+        if tournament is None:
+            return TournamentCategory.objects.none()
+        return TournamentCategory.objects.filter(
+            tournament=tournament, is_active=True
+        ).prefetch_related(
+            models.Prefetch(
+                "player_set",
+                queryset=Player.objects.filter(
+                    show_on_teams_page=True, is_active=True
+                ).order_by("name"),
+                to_attr="visible_players",
+            )
+        ).order_by("name")
+
+    def _get_tournament(self):
+        pk = self.request.GET.get("tournament")
+        if pk:
+            return Tournament.objects.filter(pk=pk, is_current_active=True).first()
+        return Tournament.objects.filter(is_current_active=True).order_by("-tournament_date_time").first()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["all_tournaments"] = Tournament.objects.filter(is_current_active=True).order_by("-tournament_date_time")
+        context["selected_tournament"] = self._get_tournament()
+        return context

@@ -1,0 +1,121 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+    <img class="img-responsive" src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:30rem" alt="">
+{% endblock %}
+
+{% block content %}
+<div class="enterprise-content">
+    <div class="container">
+
+        <div class="blog-title-text mb-4">
+            <h3>Teams by Category</h3>
+            {% if selected_tournament %}
+                <p class="text-muted">{{ selected_tournament.name }}</p>
+            {% endif %}
+        </div>
+
+        {% if all_tournaments|length > 1 %}
+        <form method="get" class="mb-4">
+            <div class="row align-items-end">
+                <div class="col-md-4">
+                    <label for="tournament-select" class="font-weight-bold">Select Tournament</label>
+                    <select id="tournament-select" name="tournament" class="form-control" onchange="this.form.submit()">
+                        {% for t in all_tournaments %}
+                        <option value="{{ t.pk }}" {% if selected_tournament and selected_tournament.pk == t.pk %}selected{% endif %}>
+                            {{ t.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if not selected_tournament %}
+            <div class="alert alert-info">No active tournament found.</div>
+        {% elif not categories %}
+            <div class="alert alert-info">No categories available for this tournament.</div>
+        {% else %}
+
+            <!-- Category Tabs -->
+            <ul class="nav nav-tabs mb-4" id="categoryTabs" role="tablist">
+                {% for cat in categories %}
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if forloop.first %}active{% endif %}"
+                            id="tab-{{ cat.pk }}"
+                            data-toggle="tab"
+                            href="#panel-{{ cat.pk }}"
+                            role="tab"
+                            aria-controls="panel-{{ cat.pk }}"
+                            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                        {{ cat.name }}
+                        <span class="badge badge-secondary ml-1">{{ cat.visible_players|length }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Category Panels -->
+            <div class="tab-content" id="categoryTabsContent">
+                {% for cat in categories %}
+                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}"
+                     id="panel-{{ cat.pk }}"
+                     role="tabpanel"
+                     aria-labelledby="tab-{{ cat.pk }}">
+
+                    {% if not cat.visible_players %}
+                        <div class="alert alert-secondary">No teams registered for this category yet.</div>
+                    {% else %}
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr style="background-color:#189ADD; color:white;">
+                                    <th>#</th>
+                                    <th>Team Name</th>
+                                    <th>Player 1</th>
+                                    <th>Player 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for player in cat.visible_players %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                        {% if player.team_name and player.team_name != "NA" %}
+                                            {{ player.team_name }}
+                                        {% else %}
+                                            —
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if player.certificate_name %}
+                                            {{ player.certificate_name }}
+                                        {% else %}
+                                            {{ player.name }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if player.partner_name and player.partner_name != "NA" %}
+                                            {% if player.certificate_partner_name %}
+                                                {{ player.certificate_partner_name }}
+                                            {% else %}
+                                                {{ player.partner_name }}
+                                            {% endif %}
+                                        {% else %}
+                                            —
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
