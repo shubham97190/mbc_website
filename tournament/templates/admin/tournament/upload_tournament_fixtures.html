@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="help" style="margin-bottom:1.5rem; padding:1rem; background:#f8f9fa; border-left:4px solid #189ADD;">
+    <strong>How to update fixtures:</strong>
+    <ol style="margin:0.5rem 0 0 1.2rem; padding:0;">
+        <li>Get the latest Excel file from the organiser.</li>
+        <li>Select the file below and click <em>Upload &amp; Import</em>.</li>
+        <li>All existing fixture data for <strong>{{ tournament }}</strong> will be replaced automatically.</li>
+        <li>Each sheet in the workbook = one category (40+, 50+, Open, XD etc.).</li>
+    </ol>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+        <input type="submit" value="Upload &amp; Import" class="button default">
+        &nbsp;
+        <a href="{% url 'admin:tournament_tournament_change' tournament.pk %}" class="button cancel-link">Cancel</a>
+    </p>
+</form>
+{% endblock %}

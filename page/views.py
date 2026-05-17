@@ -10,7 +10,7 @@ from django.views.generic.edit import FormView
 from blog.models import Article
 from enquiry.forms import EnquiryForm
 from faq.models import Question
-from fixtures.models import Fixtures
+from fixtures.models import Fixtures, FixtureCategory
 from tournament.models import Tournament, TournamentCategory, TournamentWinnerPage
 from .models import *
 from location.models import Location
@@ -174,6 +174,22 @@ class FixturesPageView(TemplateView):
                                        queryset=TournamentCategory.objects.filter(is_active=True).order_by('code'),
                                        to_attr='categories'
                                        )).order_by("tournament_date_time").first()
+        return context
+
+
+class TournamentFixturesView(TemplateView):
+    template_name = "page/tournament-fixtures.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tournament = Tournament.objects.get(pk=self.kwargs['pk'])
+        context['tournament'] = tournament
+        context['fixture_categories'] = (
+            FixtureCategory.objects
+            .filter(tournament=tournament)
+            .prefetch_related('courts', 'courts__teams', 'courts__matches')
+            .order_by('order', 'name')
+        )
         return context
 
 

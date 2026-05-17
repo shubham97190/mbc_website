@@ -7,5 +7,11 @@
         <span><strong>Allowed Registrations:</strong> {{ tournament.total_allowed_registration }}</span></br>
         <span><strong>Venue:</strong> {{ tournament.venue }}</span></br>
         <span><strong>Address:</strong> {{ tournament.address }}</span></br>
+        {% if tournament.fixture_categories.exists %}
+        <hr/>
+        <a href="{% url 'tournament-fixtures' tournament.pk %}" class="btn btn-sm" style="background-color:#189ADD; color:white;">
+            View Fixtures
+        </a>
+        {% endif %}
     </div>
 </div>

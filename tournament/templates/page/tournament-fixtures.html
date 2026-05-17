@@ -1,0 +1,118 @@
+{% extends 'page/base.html' %}
+{% load static %}
+
+{% block banner %}
+<img class="img-responsive" src="{% static 'images/banner-tournament-photp.jpeg' %}" style="height:30rem" alt="">
+{% endblock %}
+
+{% block content %}
+<div class="enterprise-content">
+    <div class="container">
+
+        <div class="blog-title-text mb-4">
+            <h3>{{ tournament.name }} &mdash; Fixtures</h3>
+            <p class="text-muted">{{ tournament.venue }}</p>
+        </div>
+
+        {% if not fixture_categories %}
+            <div class="alert alert-info">No fixtures have been uploaded for this tournament yet.</div>
+        {% else %}
+
+        <!-- Category tabs -->
+        <ul class="nav nav-tabs mb-4" id="fixtureCategoryTabs" role="tablist">
+            {% for cat in fixture_categories %}
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {% if forloop.first %}active{% endif %}"
+                   id="fixture-tab-{{ cat.pk }}"
+                   data-toggle="tab"
+                   href="#fixture-panel-{{ cat.pk }}"
+                   role="tab"
+                   aria-controls="fixture-panel-{{ cat.pk }}"
+                   aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                    {{ cat.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="tab-content" id="fixtureCategoryTabsContent">
+            {% for cat in fixture_categories %}
+            <div class="tab-pane fade {% if forloop.first %}show active{% endif %}"
+                 id="fixture-panel-{{ cat.pk }}"
+                 role="tabpanel"
+                 aria-labelledby="fixture-tab-{{ cat.pk }}">
+
+                {% if cat.title %}
+                <p class="text-muted mb-3">{{ cat.title }}</p>
+                {% endif %}
+
+                {% for court in cat.courts.all %}
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header" style="background-color:#189ADD; color:white;">
+                        <strong>{{ court.name }}</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <!-- Teams list -->
+                            <div class="col-md-4 mb-3">
+                                <h6 class="font-weight-bold">Teams</h6>
+                                <table class="table table-sm table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Team #</th>
+                                            <th>Pair</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team in court.teams.all %}
+                                    <tr>
+                                        <td>{{ team.team_number }}</td>
+                                        <td>{{ team.pair_name }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Match schedule -->
+                            <div class="col-md-8 mb-3">
+                                <h6 class="font-weight-bold">Match Schedule</h6>
+                                <table class="table table-sm table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th style="width:60px;">Match</th>
+                                            <th>Team 1</th>
+                                            <th style="width:40px;" class="text-center">vs</th>
+                                            <th>Team 2</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match in court.matches.all %}
+                                    <tr>
+                                        <td class="text-center font-weight-bold">{{ match.match_number }}</td>
+                                        <td>{{ match.team1 }}</td>
+                                        <td class="text-center text-muted">vs</td>
+                                        <td>{{ match.team2 }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="alert alert-secondary">No courts listed for this category.</div>
+                {% endfor %}
+
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

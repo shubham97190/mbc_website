@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.db import models
+from django import forms
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse, path
 from django.utils.html import format_html
 # Register your models here.
@@ -59,13 +61,106 @@ class TournamentPageAdmin(admin.ModelAdmin):
         "is_current_active",
         "show_on_teams_dropdown",
         "status",
+        "fixtures_status",
         "created_date",
         "updated_date",
     ]
     list_editable = ["show_on_teams_dropdown"]
     formfield_overrides = {models.TextField: {"widget": RichTextEditorWidget}}
-    readonly_fields = ('created_by', 'updated_by')
+    readonly_fields = ('created_by', 'updated_by', 'fixtures_panel')
     actions = ['duplicate_tournament']
+
+    # ------------------------------------------------------------------ #
+    # Fixtures upload panel (shown on the Tournament change form)          #
+    # ------------------------------------------------------------------ #
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path(
+                '<int:tournament_id>/upload-fixtures/',
+                self.admin_site.admin_view(self.upload_fixtures_view),
+                name='tournament_upload_fixtures',
+            ),
+        ]
+        return custom_urls + urls
+
+    class _FixtureUploadForm(forms.Form):
+        excel_file = forms.FileField(
+            label="Fixtures Excel file (.xlsx)",
+            help_text="Each sheet = one category (40+, 50+, Open, XD). "
+                      "Existing fixture data for this tournament will be replaced.",
+        )
+
+    def upload_fixtures_view(self, request, tournament_id):
+        from fixtures.admin import _import_fixtures
+        tournament = Tournament.objects.get(pk=tournament_id)
+        if request.method == "POST":
+            form = self._FixtureUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                try:
+                    n_cats, n_courts = _import_fixtures(
+                        request.FILES["excel_file"], tournament
+                    )
+                    self.message_user(
+                        request,
+                        f"Successfully imported {n_cats} categories and "
+                        f"{n_courts} courts for '{tournament}'.",
+                    )
+                except Exception as exc:
+                    self.message_user(request, f"Import failed: {exc}", level="error")
+                return redirect(
+                    reverse('admin:tournament_tournament_change', args=[tournament_id])
+                )
+        else:
+            form = self._FixtureUploadForm()
+
+        context = {
+            **self.admin_site.each_context(request),
+            "form": form,
+            "tournament": tournament,
+            "title": f"Upload Fixtures — {tournament}",
+            "opts": self.model._meta,
+        }
+        return render(request, "admin/tournament/upload_tournament_fixtures.html", context)
+
+    @admin.display(description="Fixtures")
+    def fixtures_status(self, obj):
+        from fixtures.models import FixtureCategory
+        count = FixtureCategory.objects.filter(tournament=obj).count()
+        upload_url = reverse('admin:tournament_upload_fixtures', args=[obj.pk])
+        if count:
+            view_url = reverse('tournament-fixtures', args=[obj.pk]) if False else f"/tournament-fixtures/{obj.pk}/"
+            return format_html(
+                '<a href="{}" title="Upload new Excel">&#x21A5; Upload</a> &nbsp; '
+                '<a href="{}" target="_blank">{} categories</a>',
+                upload_url, view_url, count,
+            )
+        return format_html(
+            '<a class="addlink" href="{}">Upload Fixtures</a>',
+            upload_url,
+        )
+
+    @admin.display(description="Fixtures")
+    def fixtures_panel(self, obj):
+        if not obj.pk:
+            return "Save the tournament first, then upload fixtures."
+        from fixtures.models import FixtureCategory
+        count = FixtureCategory.objects.filter(tournament=obj).count()
+        upload_url = reverse('admin:tournament_upload_fixtures', args=[obj.pk])
+        if count:
+            view_url = f"/tournament-fixtures/{obj.pk}/"
+            return format_html(
+                '<p style="margin:0">{} fixture categories uploaded. '
+                '<a href="{}" target="_blank">View on website &rarr;</a></p>'
+                '<p style="margin:4px 0 0"><a class="button" href="{}">&#x21A5; Re-upload Fixtures Excel</a></p>',
+                count, view_url, upload_url,
+            )
+        return format_html(
+            '<a class="button" href="{}">&#x21A5; Upload Fixtures Excel</a>',
+            upload_url,
+        )
+    fixtures_panel.allow_tags = True
 
     def save_model(self, request, obj: Tournament, form, change):
         if not change:

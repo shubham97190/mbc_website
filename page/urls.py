@@ -1,6 +1,7 @@
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path
 from page.views import *
+from page.views import TournamentFixturesView
 from page.sitemaps import PageViewSitemap
 from page.sitemaps import GenericViewSitemap
 
@@ -20,6 +21,7 @@ urlpatterns = [
     path('location/', LocationPageView.as_view(), name='location'),
     path('rules/', RulesPageView.as_view(), name='rules'),
     path('fixtures/', FixturesPageView.as_view(), name='fixtures'),
+    path('tournament-fixtures/<int:pk>/', TournamentFixturesView.as_view(), name='tournament-fixtures'),
     path('sitemap/', SitemapPageView.as_view(), name='sitemap'),
     path('winners/', WinnersListView.as_view(), name='winners'),
     path('winners/<int:pk>/', WinnerDetailView.as_view(), name='winners-detail'),

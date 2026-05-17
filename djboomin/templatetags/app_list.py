@@ -86,6 +86,14 @@ def get_app_list(context):
 						'models': [model_dict],
 					}
 
+	# Merge 'fixtures' models into the 'tournament' section so they appear
+	# together in the admin sidebar instead of as a separate app.
+	if 'fixtures' in app_dict:
+		if 'tournament' in app_dict:
+			app_dict['tournament']['models'].extend(app_dict.pop('fixtures')['models'])
+		else:
+			app_dict['tournament'] = app_dict.pop('fixtures')
+
 	# Sort the apps alphabetically.
 	app_list = list(six.itervalues(app_dict))
 	app_list.sort(key=lambda x: x['name'])

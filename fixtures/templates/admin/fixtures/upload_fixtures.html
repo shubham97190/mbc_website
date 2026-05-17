@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="help" style="margin-bottom:1rem;">
+    <p>
+        Upload the fixtures Excel file (<strong>.xlsx</strong>).
+        Each sheet in the workbook represents one category (e.g. 40+, 50+, Open, XD).
+        <br><strong>All existing fixture data will be replaced.</strong>
+    </p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        {{ form.as_p }}
+    </div>
+    <input type="submit" value="Upload &amp; Import" class="button">
+    &nbsp;
+    <a href=".." class="button cancel-link">Cancel</a>
+</form>
+{% endblock %}
